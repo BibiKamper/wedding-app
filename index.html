@@ -210,7 +210,7 @@
 <div class="screen" id="boardScreen" hidden>
   <p class="eyebrow">Die besten Gäste des Abends</p>
   <h1 style="font-size:clamp(30px,10vw,48px)">Bestenliste</h1>
-  <p class="top3-banner">🥇🥈🥉 Die Top 3 gewinnen eine Überraschung von Verena &amp; Philipp!</p>
+  <p class="top3-banner">🥇🥈🥉 Die Top 3 gewinnen eine Überraschung von Verena &amp; Phillip!</p>
   <div class="scroll"><div class="board" id="boardList"></div></div>
   <div class="btn-row">
     <button class="btn" id="boardPlayBtn">Nochmal spielen</button>
@@ -239,7 +239,7 @@
    EDIT ME — make it yours
    ============================================================ */
 const CONFIG = {
-  partnerA: "Philipp",
+  partnerA: "Phillip",
   partnerB: "Verena",
   titleLine1: "Hier kommt",
   titleLine2: "das Paar",
@@ -980,7 +980,7 @@ function genQR(url) {
 }
 document.getElementById("qrBtn").onclick = () => {
   const input = document.getElementById("urlInput");
-  if (!input.value) input.value = window.location.href;
+  if (!input.value) input.value = "https://verena-und-phillip.netlify.app/";
   show("qrScreen");
   genQR(input.value);
 };
