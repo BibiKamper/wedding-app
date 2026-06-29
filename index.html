@@ -199,6 +199,7 @@
   <div class="field">
     <label for="nameInput">Namen auf der Bestenliste eintragen</label>
     <input type="text" id="nameInput" maxlength="18" placeholder="Name oder Tischnummer" autocomplete="off" />
+    <p class="hint" style="margin:2px 0 0 4px">Nur dein bestes Ergebnis wird gespeichert</p>
   </div>
   <div class="btn-row">
     <button class="btn" id="saveBtn">Punkte speichern</button>
@@ -427,9 +428,8 @@ function localSaveBoard(entries) {
 async function loadBoard() {
   if (USE_SUPABASE) {
     try {
-      const today = new Date().toISOString().slice(0, 10); // e.g. "2026-06-28"
       const res = await fetch(
-        `${SUPABASE_URL}/rest/v1/scores?select=name,score,rings,char&created_at=gte.${today}T00:00:00Z&order=score.desc&limit=50`,
+        `${SUPABASE_URL}/rest/v1/scores?select=name,score,rings,char&order=score.desc&limit=50`,
         { headers: SB_HEADERS }
       );
       if (!res.ok) throw new Error(await res.text());
@@ -444,19 +444,46 @@ async function loadBoard() {
 async function saveToBoard(entry) {
   if (USE_SUPABASE) {
     try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/scores`, {
-        method: "POST",
-        headers: { ...SB_HEADERS, "Prefer": "return=minimal" },
-        body: JSON.stringify({ name: entry.name, score: entry.score, rings: entry.rings, char: entry.char }),
-      });
-      if (!res.ok) throw new Error(await res.text());
+      const today = new Date().toISOString().slice(0, 10);
+      // Check if this name already has an entry today
+      const checkRes = await fetch(
+        `${SUPABASE_URL}/rest/v1/scores?select=id,score&name=eq.${encodeURIComponent(entry.name)}&created_at=gte.${today}T00:00:00Z`,
+        { headers: SB_HEADERS }
+      );
+      if (!checkRes.ok) throw new Error(await checkRes.text());
+      const existing = await checkRes.json();
+      if (existing.length > 0) {
+        if (entry.score <= existing[0].score) return; // not a new best, skip
+        // Update with the better score
+        const updateRes = await fetch(`${SUPABASE_URL}/rest/v1/scores?id=eq.${existing[0].id}`, {
+          method: "PATCH",
+          headers: { ...SB_HEADERS, "Prefer": "return=minimal" },
+          body: JSON.stringify({ score: entry.score, rings: entry.rings, char: entry.char }),
+        });
+        if (!updateRes.ok) throw new Error(await updateRes.text());
+      } else {
+        // New entry
+        const insertRes = await fetch(`${SUPABASE_URL}/rest/v1/scores`, {
+          method: "POST",
+          headers: { ...SB_HEADERS, "Prefer": "return=minimal" },
+          body: JSON.stringify({ name: entry.name, score: entry.score, rings: entry.rings, char: entry.char }),
+        });
+        if (!insertRes.ok) throw new Error(await insertRes.text());
+      }
       return;
     } catch (e) {
       console.error("Supabase Fehler, speichere lokal:", e);
     }
   }
+  // localStorage fallback: one entry per name, best score only
   const entries = localLoadBoard();
-  entries.push(entry);
+  const idx = entries.findIndex(e => e.name.toLowerCase() === entry.name.toLowerCase());
+  if (idx >= 0) {
+    if (entry.score <= entries[idx].score) return; // not a new best
+    entries[idx] = entry; // replace with better score
+  } else {
+    entries.push(entry);
+  }
   localSaveBoard(entries);
 }
 
@@ -545,6 +572,10 @@ function gameOver() {
     if (score > best) saveMyBest(score);
   });
   show("overScreen");
+  try {
+    const saved = localStorage.getItem("weddingPlayerName");
+    if (saved) document.getElementById("nameInput").value = saved;
+  } catch {}
   setTimeout(() => document.getElementById("nameInput").focus(), 60);
 }
 
@@ -960,6 +991,7 @@ document.getElementById("saveBtn").onclick = async (ev) => {
   const btn = ev.currentTarget;
   let name = document.getElementById("nameInput").value.trim();
   if (!name) name = "Anonymer Gast";
+  try { localStorage.setItem("weddingPlayerName", name); } catch {}
   btn.disabled = true; btn.textContent = "Wird gespeichert…";
   const charEmoji = selectedChar === "bride" ? "👰" : "🤵";
   const entry = { name: name.slice(0, 18), score: Math.floor(scoreF), rings, char: charEmoji };
