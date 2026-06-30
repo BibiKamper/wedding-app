@@ -224,13 +224,9 @@
   <p class="eyebrow">Gäste einladen</p>
   <h1 style="font-size:clamp(28px,9vw,44px)">Scannen & spielen</h1>
   <div id="qrbox"><img id="qrImg" alt="QR-Code mit Link zum Spiel" /></div>
-  <p class="qr-note">Den veröffentlichten Spiellink unten einfügen, dann diesen Code auf den Tischen ausdrucken oder anzeigen.</p>
-  <div class="field">
-    <label for="urlInput">Spiellink</label>
-    <input type="text" id="urlInput" placeholder="https://..." autocomplete="off" />
-  </div>
+  <p class="qr-note" id="qrLink" style="font-size:15px; color:var(--gold); word-break:break-all;"></p>
   <div class="btn-row">
-    <button class="btn" id="genQrBtn">Code aktualisieren</button>
+    <button class="btn" id="copyLinkBtn">Link kopieren</button>
     <button class="btn ghost" id="qrHomeBtn">Startseite</button>
   </div>
 </div>
@@ -1010,15 +1006,18 @@ function genQR(url) {
     document.getElementById("qrImg").src = qr.createDataURL(6, 8);
   } catch (e) { console.error(e); }
 }
+const GAME_URL = "https://verena-und-phillip.netlify.app/";
 document.getElementById("qrBtn").onclick = () => {
-  const input = document.getElementById("urlInput");
-  if (!input.value) input.value = "https://verena-und-phillip.netlify.app/";
+  document.getElementById("qrLink").textContent = GAME_URL;
   show("qrScreen");
-  genQR(input.value);
+  genQR(GAME_URL);
 };
-document.getElementById("genQrBtn").onclick = () => {
-  const url = document.getElementById("urlInput").value.trim() || window.location.href;
-  genQR(url);
+document.getElementById("copyLinkBtn").onclick = () => {
+  navigator.clipboard.writeText(GAME_URL).then(() => {
+    const btn = document.getElementById("copyLinkBtn");
+    btn.textContent = "Kopiert! ✓";
+    setTimeout(() => btn.textContent = "Link kopieren", 2000);
+  });
 };
 
 /* boot */
