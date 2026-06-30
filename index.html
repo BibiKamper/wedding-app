@@ -564,7 +564,7 @@ function gameOver() {
     rings + (rings === 1 ? " Ring gesammelt" : " Ringe gesammelt");
   loadMyBest().then(best => {
     document.getElementById("overLabel").textContent =
-      score > best && best > 0 ? "Neuer persönlicher Rekord —" : "Ihr habt es bis zu";
+      score > best && best > 0 ? "Neuer persönlicher Rekord —" : "Ein Hindernis ist dir zum Verhängnis geworden";
     if (score > best) saveMyBest(score);
   });
   show("overScreen");
