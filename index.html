@@ -236,6 +236,32 @@
   .invite-link .rings-ico i:last-child { left: 6px; }
   .invite-link .invite-txt { font-weight: 700; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #6B6358; border-bottom: 1.5px solid #C9A24B; padding-bottom: 3px; }
 
+  /* ===== Game over (Spielende) — festive background ===== */
+  #overScreen { background: linear-gradient(#CFE2EA 0%, #D6D2E2 44%, #C9B6D2 78%, #B89BC0 100%); }
+  .over-content { display: flex; flex-direction: column; align-items: center; gap: 14px; position: relative; z-index: 1; width: 100%; }
+  .fest-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+  .fest-glow { position: absolute; left: 50%; top: -90px; transform: translateX(-50%); width: 300px; height: 240px; border-radius: 50%; background: radial-gradient(closest-side, rgba(247,226,160,0.45), rgba(247,226,160,0)); }
+  .fest-ground { position: absolute; left: 0; right: 0; bottom: 0; height: 64px; background: linear-gradient(#D8C495, #CDB67F); }
+  .fest-ground::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: rgba(169,128,59,0.85); }
+  .bunting { position: absolute; left: 0; right: 0; top: calc(12px + env(safe-area-inset-top)); height: 26px; }
+  .bunting .bstring { position: absolute; left: 14px; right: 14px; top: 2px; height: 2px; background: #D8C9A8; }
+  .bunting .flags { position: absolute; left: 14px; right: 14px; top: 3px; display: flex; justify-content: space-between; }
+  .bunting .flags i { width: 18px; height: 22px; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+  .bunting .flags i:nth-child(3n+1) { background: #E8A9A2; }
+  .bunting .flags i:nth-child(3n+2) { background: #D9B968; }
+  .bunting .flags i:nth-child(3n+3) { background: #AFCBD6; }
+  .petal { position: absolute; width: 7px; height: 7px; border-radius: 60% 0 60% 0; opacity: 0.6; }
+
+  #overScreen .final-label { color: #6F6480; }
+  #overScreen .final-score { color: #3A352F; }
+  #overScreen .rule { margin: 22px 0 6px; }
+  #overScreen input[type="text"] { text-align: left; }
+  #overScreen .field .hint { font-style: italic; color: #6F6480; }
+  .rings-line { display: flex; align-items: center; gap: 7px; color: #8A6A2E; font-weight: 700; font-size: 14px; }
+  .ring-badge { position: relative; width: 15px; height: 15px; display: inline-block; flex: none; }
+  .ring-badge::before { content: ""; position: absolute; inset: 0; border: 3px solid #C9A24B; border-radius: 50%; }
+  .ring-badge::after { content: ""; position: absolute; left: 5px; top: -4px; width: 5px; height: 5px; background: #C9A24B; transform: rotate(45deg); }
+
   @media (prefers-reduced-motion: reduce) {
     .btn { transition: none; }
     .picker-card { transition: none; }
@@ -363,17 +389,31 @@
 
 <!-- GAME OVER + NAME -->
 <div class="screen" id="overScreen" hidden>
-  <p class="final-label" id="overLabel">Ihr habt es bis zu</p>
-  <p class="final-score" id="finalScore">0</p>
-  <p class="rings-line" id="ringsLine">0 Ringe gesammelt</p>
-  <div class="field">
-    <label for="nameInput">Namen auf der Bestenliste eintragen</label>
-    <input type="text" id="nameInput" maxlength="18" placeholder="Name oder Tischnummer" autocomplete="off" />
-    <p class="hint" style="margin:2px 0 0 4px">Nur dein bestes Ergebnis wird gespeichert</p>
+  <div class="fest-bg" aria-hidden="true">
+    <div class="fest-glow"></div>
+    <div class="bunting"><div class="bstring"></div><div class="flags"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    <span class="petal" style="left:14%;top:20%;background:#E8A9A2;transform:rotate(20deg)"></span>
+    <span class="petal" style="left:78%;top:16%;background:#D9B968;transform:rotate(-30deg)"></span>
+    <span class="petal" style="left:84%;top:34%;background:#AFCBD6;transform:rotate(40deg)"></span>
+    <span class="petal" style="left:10%;top:40%;background:#D9B968;transform:rotate(10deg)"></span>
+    <span class="petal" style="left:46%;top:14%;background:#E8A9A2;transform:rotate(-15deg)"></span>
+    <span class="petal" style="left:80%;top:52%;background:#E8A9A2;transform:rotate(25deg)"></span>
+    <div class="fest-ground"></div>
   </div>
-  <div class="btn-row">
-    <button class="btn" id="saveBtn">Punkte speichern</button>
-    <button class="btn ghost" id="retryBtn">Nochmal</button>
+  <div class="over-content">
+    <p class="final-label" id="overLabel">Fast unaufhaltsam …</p>
+    <p class="final-score" id="finalScore">0</p>
+    <div class="rings-line"><span class="ring-badge" aria-hidden="true"></span><span id="ringsLine">0 Ringe gesammelt</span></div>
+    <div class="rule"></div>
+    <div class="field">
+      <label for="nameInput">Namen auf der Bestenliste eintragen</label>
+      <input type="text" id="nameInput" maxlength="18" placeholder="Dein Name" autocomplete="off" />
+      <p class="hint">Nur dein bestes Ergebnis wird gespeichert</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn" id="saveBtn">Punkte speichern</button>
+      <button class="btn ghost" id="retryBtn">Nochmal</button>
+    </div>
   </div>
 </div>
 
@@ -772,7 +812,7 @@ function gameOver() {
     rings + (rings === 1 ? " Ring gesammelt" : " Ringe gesammelt");
   loadMyBest().then(best => {
     document.getElementById("overLabel").textContent =
-      score > best && best > 0 ? "Neuer persönlicher Rekord —" : "Ein Hindernis ist dir zum Verhängnis geworden";
+      score > best && best > 0 ? "Neuer persönlicher Rekord —" : "Fast unaufhaltsam …";
     if (score > best) saveMyBest(score);
   });
   show("overScreen");
