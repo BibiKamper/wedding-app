@@ -140,7 +140,21 @@
   .row .pts small { font-weight: 700; font-size: 11.5px; color: var(--gold-deep); margin-left: 4px; }
   .board-empty { color: var(--muted); font-size: 14px; padding: 18px; }
   .scroll { max-height: 46vh; overflow-y: auto; overflow-x: hidden; width: 100%; display: flex; flex-direction: column; align-items: center; }
-  .top3-banner { background: rgba(255,253,248,0.5); border: 1px solid rgba(201,162,75,0.45); border-radius: 14px; padding: 11px 16px; font-size: 12.5px; color: #5E5060; max-width: min(380px, 90vw); line-height: 1.4; margin-top: 2px; }
+  .top3-banner { display: flex; align-items: center; gap: 10px; text-align: left; background: rgba(255,253,248,0.5); border: 1px solid rgba(201,162,75,0.45); border-radius: 14px; padding: 11px 16px; font-size: 12.5px; color: #5E5060; max-width: min(380px, 90vw); line-height: 1.4; margin-top: 2px; }
+  .top3-banner .tiers { display: flex; gap: 3px; flex: none; }
+  .top3-banner .tiers i { width: 13px; height: 13px; border-radius: 50%; }
+  .top3-banner .tiers i:nth-child(1) { background: #E0B748; }
+  .top3-banner .tiers i:nth-child(2) { background: #B9BAC6; }
+  .top3-banner .tiers i:nth-child(3) { background: #C0814F; }
+
+  /* leaderboard festive background + title */
+  #boardScreen { background: linear-gradient(#CFE2EA 0%, #D6D2E2 44%, #C9B6D2 78%, #B89BC0 100%); }
+  #boardScreen .eyebrow { color: #9A7A2E; }
+  .board-title { font-style: italic; font-size: clamp(30px, 10vw, 42px); }
+  .row .pts { display: inline-flex; align-items: center; gap: 4px; }
+  .ring-mini { position: relative; width: 11px; height: 11px; display: inline-block; flex: none; }
+  .ring-mini::before { content: ""; position: absolute; inset: 0; border: 2.5px solid #C9A24B; border-radius: 50%; }
+  .ring-mini::after { content: ""; position: absolute; left: 3.5px; top: -3px; width: 4px; height: 4px; background: #C9A24B; transform: rotate(45deg); }
 
   /* QR / invite */
   #qrScreen { background: #FBF5EA; }
