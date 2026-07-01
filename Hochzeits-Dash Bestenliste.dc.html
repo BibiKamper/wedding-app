@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail" data-bg-color="#C9B6D2">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#C9B6D2"/>
+    <text x="600" y="230" font-family="Georgia, 'DM Serif Display', serif" font-style="italic" font-size="120" fill="#3A352F" text-anchor="middle">Bestenliste</text>
+    <rect x="320" y="320" width="560" height="70" rx="18" fill="#FFFDF8"/>
+    <rect x="320" y="410" width="560" height="70" rx="18" fill="#FFFDF8"/>
+    <rect x="320" y="500" width="560" height="70" rx="18" fill="#FFFDF8"/>
+    <circle cx="370" cy="355" r="20" fill="#E0B748"/>
+    <circle cx="370" cy="445" r="20" fill="#B9BAC6"/>
+    <circle cx="370" cy="535" r="20" fill="#C0814F"/>
+  </svg>
+</template>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:ital,wght@0,400;0,500;0,600;0,700;0,800&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#ECE3D4;}
+  *{box-sizing:border-box;}
+  .lbList::-webkit-scrollbar{width:0;height:0;}
+</style>
+</helmet>
+
+<div style="min-height:100vh;background:radial-gradient(120% 90% at 50% 0%,#F2EADB,#E6DAC6);font-family:'Karla',sans-serif;display:flex;align-items:center;justify-content:center;padding:44px 20px;">
+
+  <div style="width:362px;height:768px;background:#1c1a16;border-radius:52px;padding:11px;box-shadow:0 36px 70px rgba(60,48,30,.30);flex:none;">
+    <div style="position:relative;width:100%;height:100%;border-radius:42px;overflow:hidden;background:linear-gradient(#CFE2EA 0%,#D6D2E2 44%,#C9B6D2 78%,#B89BC0 100%);">
+
+      <!-- notch -->
+      <div style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:128px;height:28px;background:#1c1a16;border-radius:0 0 18px 18px;z-index:60;"></div>
+
+      <!-- bunting -->
+      <div style="position:absolute;left:0;top:44px;width:100%;height:30px;">
+        <div style="position:absolute;left:14px;right:14px;top:2px;height:2px;background:#D8C9A8;border-radius:2px;"></div>
+        <div style="position:absolute;left:14px;right:14px;top:3px;display:flex;justify-content:space-between;">
+          <div style="width:16px;height:20px;background:#E8A9A2;clip-path:polygon(0 0,100% 0,50% 100%);"></div>
+          <div style="width:16px;height:20px;background:#D9B968;clip-path:polygon(0 0,100% 0,50% 100%);"></div>
+          <div style="width:16px;height:20px;background:#AFCBD6;clip-path:polygon(0 0,100% 0,50% 100%);"></div>
+          <div style="width:16px;height:20px;background:#E8A9A2;clip-path:polygon(0 0,100% 0,50% 100%);"></div>
+          <div style="width:16px;height:20px;background:#D9B968;clip-path:polygon(0 0,100% 0,50% 100%);"></div>
+          <div style="width:16px;height:20px;background:#AFCBD6;clip-path:polygon(0 0,100% 0,50% 100%);"></div>
+          <div style="width:16px;height:20px;background:#E8A9A2;clip-path:polygon(0 0,100% 0,50% 100%);"></div>
+          <div style="width:16px;height:20px;background:#D9B968;clip-path:polygon(0 0,100% 0,50% 100%);"></div>
+        </div>
+      </div>
+
+      <!-- confetti -->
+      <div style="position:absolute;left:40px;top:150px;width:6px;height:6px;background:#E8A9A2;border-radius:60% 0 60% 0;transform:rotate(20deg);opacity:.5;"></div>
+      <div style="position:absolute;left:308px;top:200px;width:6px;height:6px;background:#D9B968;border-radius:60% 0 60% 0;transform:rotate(-25deg);opacity:.5;"></div>
+
+      <!-- content -->
+      <div style="position:absolute;inset:0;padding:84px 24px 30px;display:flex;flex-direction:column;align-items:center;">
+
+        <!-- eyebrow -->
+        <div style="font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:#9A7A2E;font-weight:700;text-align:center;">Die besten Gäste des Abends</div>
+
+        <!-- title -->
+        <h1 style="font-family:'DM Serif Display',serif;font-style:italic;font-weight:400;font-size:38px;line-height:1;color:#3A352F;margin:8px 0 0;">Bestenliste</h1>
+
+        <!-- info banner -->
+        <div style="margin-top:16px;display:flex;align-items:center;gap:10px;padding:11px 16px;border-radius:14px;background:rgba(255,253,248,.5);border:1px solid rgba(201,162,75,.45);">
+          <div style="display:flex;gap:3px;flex:none;">
+            <div style="width:13px;height:13px;border-radius:50%;background:#E0B748;"></div>
+            <div style="width:13px;height:13px;border-radius:50%;background:#B9BAC6;"></div>
+            <div style="width:13px;height:13px;border-radius:50%;background:#C0814F;"></div>
+          </div>
+          <span style="font-size:12.5px;line-height:1.4;color:#5E5060;">Die Top 3 gewinnen eine Überraschung von Verena &amp; Phillip!</span>
+        </div>
+
+        <!-- list -->
+        <div class="lbList" style="margin-top:16px;width:100%;flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:9px;padding-bottom:4px;">
+          <sc-for list="{{ entries }}" as="row" hint-placeholder-count="6">
+            <div style="{{ row.cardStyle }}">
+              <div style="{{ row.badgeStyle }}">{{ row.rank }}</div>
+              <div style="flex:1;font-weight:700;font-size:15.5px;color:#3A352F;padding-left:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ row.name }}</div>
+              <div style="display:flex;align-items:baseline;gap:5px;flex:none;">
+                <span style="font-weight:800;font-size:18px;color:#3A352F;">{{ row.score }}</span>
+                <span style="font-size:11.5px;color:#8A6A2E;font-weight:700;">{{ row.rings }}</span>
+                <div style="position:relative;width:11px;height:11px;align-self:center;"><div style="position:absolute;inset:0;border:2.5px solid #C9A24B;border-radius:50%;"></div><div style="position:absolute;left:3.5px;top:-3px;width:4px;height:4px;background:#C9A24B;transform:rotate(45deg);"></div></div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <!-- CTAs -->
+        <div style="margin-top:16px;display:flex;gap:12px;justify-content:center;flex:none;">
+          <a href="Hochzeits-Dash Gameplay.dc.html" style="text-decoration:none;height:52px;padding:0 24px;border-radius:28px;background:#C9A24B;display:flex;align-items:center;justify-content:center;color:#FFFDF8;font-weight:700;font-size:14.5px;white-space:nowrap;box-shadow:0 12px 24px rgba(201,162,75,.32);" style-hover="background:#B9923E;">Nochmal spielen</a>
+          <a href="Hochzeits-Dash Startscreen.dc.html" style="text-decoration:none;height:52px;padding:0 24px;border-radius:28px;border:1.5px solid #C9A24B;display:flex;align-items:center;justify-content:center;color:#3A352F;font-weight:700;font-size:14.5px;white-space:nowrap;background:transparent;" style-hover="background:rgba(201,162,75,.10);">Startseite</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:440,&quot;height&quot;:840},&quot;youName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Bianca&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Leaderboard&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const data = this.props.entries ?? [
+      { rank: 1, name: 'Bianca', score: 1882, rings: 19 },
+      { rank: 2, name: 'Testgast', score: 999, rings: 5 },
+      { rank: 3, name: 'Testing', score: 923, rings: 14 },
+      { rank: 4, name: 'Cousine Mia', score: 748, rings: 6 },
+      { rank: 5, name: 'Onkel Klaus', score: 587, rings: 4 },
+      { rank: 6, name: 'Tante Eva', score: 565, rings: 7 },
+      { rank: 7, name: 'Lukas', score: 432, rings: 3 },
+    ];
+    const youName = this.props.youName ?? 'Bianca';
+
+    const tierBorder = { 1: '#E0B748', 2: '#B9BAC6', 3: '#C0814F' };
+    const tierGlow = { 1: 'rgba(224,183,72,.26)', 2: 'rgba(185,186,198,.26)', 3: 'rgba(192,129,79,.26)' };
+    const medalBg = { 1: '#E0B748', 2: '#B9BAC6', 3: '#C0814F' };
+
+    const entries = data.map((r) => {
+      const isMedal = r.rank <= 3;
+      const isYou = r.name === youName;
+      let card = 'display:flex;align-items:center;padding:13px 16px;border-radius:16px;flex:none;';
+      if (isMedal) {
+        card += `background:rgba(255,250,236,.74);border:2px solid ${tierBorder[r.rank]};box-shadow:0 0 0 3px ${tierGlow[r.rank]},0 8px 18px rgba(120,95,50,.12);`;
+      } else {
+        card += 'background:rgba(255,253,248,.58);border:1.5px solid rgba(226,212,180,.7);box-shadow:0 5px 12px rgba(150,120,60,.07);';
+      }
+      if (isYou) card += 'outline:2px solid rgba(201,162,75,.0);';
+
+      let badge;
+      if (isMedal) {
+        badge = `flex:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Karla',sans-serif;font-weight:800;font-size:15px;color:#fff;background:${medalBg[r.rank]};box-shadow:inset 0 -2px 0 rgba(0,0,0,.14);`;
+      } else {
+        badge = "flex:none;width:34px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-style:italic;font-size:21px;color:#C9A24B;";
+      }
+      return { rank: r.rank, name: r.name, score: r.score, rings: r.rings, cardStyle: card, badgeStyle: badge };
+    });
+
+    return { entries };
+  }
+}
+</script>
+</body>
+</html>

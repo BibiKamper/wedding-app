@@ -6,26 +6,28 @@
 <title>Hier kommt das Paar</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Karla:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <style>
   :root {
-    --twilight: #3A2A5C;
-    --mauve: #8E4D7B;
-    --dusk: #E8927C;
-    --haze: #F6C28B;
-    --gold: #FFD37E;
-    --gold-glow: #FFE9B8;
-    --rose: #FF7A8A;
-    --ivory: #FFF7EE;
-    --ink: #2A1F3D;
+    --cream: #FBF5EA;
+    --cream-2: #FFFDF8;
+    --sand: #E6DAC6;
+    --gold: #C9A24B;
+    --gold-2: #D9B968;
+    --gold-deep: #B9923E;
+    --rose: #E8A9A2;
+    --blue: #AFCBD6;
+    --ink: #3A352F;
+    --muted: #8C8377;
+    --muted-2: #A0978A;
   }
   * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   html, body {
     margin: 0; height: 100%; overflow: hidden;
-    background: var(--twilight);
-    font-family: "Outfit", system-ui, sans-serif;
-    color: var(--ivory);
+    background: var(--cream);
+    font-family: "Karla", system-ui, sans-serif;
+    color: var(--ink);
     user-select: none; -webkit-user-select: none;
   }
   #game { position: fixed; inset: 0; display: block; touch-action: none; }
@@ -35,46 +37,46 @@
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     padding: 28px 22px calc(28px + env(safe-area-inset-bottom));
     text-align: center; gap: 14px;
-    background:
-      radial-gradient(120% 80% at 50% -10%, rgba(255,211,126,0.18), transparent 60%),
-      linear-gradient(180deg, rgba(58,42,92,0.86) 0%, rgba(58,42,92,0.72) 45%, rgba(142,77,123,0.66) 100%);
-    backdrop-filter: blur(2px);
+    background: radial-gradient(120% 90% at 50% 0%, #F2EADB, #E6DAC6);
     overflow-y: auto;
   }
   .screen[hidden] { display: none; }
 
   .eyebrow {
-    font-size: 13px; letter-spacing: 0.32em; text-transform: uppercase;
-    color: var(--gold); font-weight: 600; margin: 0;
+    font-size: 12px; letter-spacing: 0.30em; text-transform: uppercase;
+    color: var(--gold); font-weight: 700; margin: 0;
   }
   h1 {
-    font-family: "Fraunces", serif; font-weight: 600; font-style: italic;
-    font-size: clamp(38px, 13vw, 70px); line-height: 0.98; margin: 0;
-    color: var(--ivory); text-shadow: 0 2px 30px rgba(255,211,126,0.35);
+    font-family: "DM Serif Display", serif; font-weight: 400;
+    font-size: clamp(36px, 12vw, 60px); line-height: 1.04; margin: 0;
+    color: var(--ink);
   }
+  .amp { font-style: italic; color: var(--gold); }
+  .rule { width: 58px; height: 1px; background: var(--gold); margin: 2px 0; }
   .couple {
-    font-family: "Fraunces", serif; font-size: clamp(16px, 5vw, 22px);
-    font-style: italic; color: var(--haze); margin: 0;
+    font-family: "DM Serif Display", serif; font-size: clamp(15px, 4.6vw, 20px);
+    font-style: italic; color: var(--muted); margin: 0; line-height: 1.5;
   }
-  .lead { max-width: 30ch; font-size: 15px; line-height: 1.5; color: rgba(255,247,238,0.82); margin: 4px 0 2px; }
+  .lead { max-width: 30ch; font-size: 14px; line-height: 1.5; color: var(--muted); margin: 4px 0 2px;
+    letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; font-size: 11px; }
 
   .btn {
-    font-family: "Outfit", sans-serif; font-weight: 600; font-size: 17px;
-    border: none; border-radius: 999px; padding: 15px 30px; cursor: pointer;
-    color: var(--ink); background: var(--gold);
-    box-shadow: 0 8px 26px rgba(255,211,126,0.4); transition: transform .12s ease, box-shadow .12s ease;
+    font-family: "Karla", sans-serif; font-weight: 700; font-size: 15px;
+    border: none; border-radius: 999px; padding: 15px 28px; cursor: pointer;
+    color: var(--cream-2); background: var(--gold);
+    box-shadow: 0 12px 24px rgba(201,162,75,0.32); transition: transform .12s ease, background .12s ease;
   }
-  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(255,211,126,0.5); }
+  .btn:hover { transform: translateY(-2px); background: var(--gold-deep); }
   .btn:active { transform: translateY(0) scale(0.98); }
   .btn.ghost {
-    background: transparent; color: var(--ivory);
-    box-shadow: inset 0 0 0 1.5px rgba(255,247,238,0.5);
+    background: transparent; color: var(--ink);
+    box-shadow: inset 0 0 0 1.5px var(--gold);
   }
-  .btn.ghost:hover { box-shadow: inset 0 0 0 1.5px var(--gold); }
-  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .btn.ghost:hover { background: rgba(201,162,75,0.10); }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
   :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 
-  .hint { font-size: 13px; color: rgba(255,247,238,0.6); margin: 2px 0 0; }
+  .hint { font-size: 12px; color: var(--muted); margin: 2px 0 0; }
 
   /* HUD */
   #hud {
@@ -83,68 +85,86 @@
     padding: calc(14px + env(safe-area-inset-top)) 18px 0; pointer-events: none;
   }
   #hud[hidden] { display: none; }
-  .hud-block { display: flex; flex-direction: column; line-height: 1; }
-  .hud-block.right { align-items: flex-end; }
-  .hud-label { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,247,238,0.65); margin-bottom: 4px; }
-  .hud-val { font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--ivory); text-shadow: 0 2px 14px rgba(0,0,0,0.3); }
+  .hud-block {
+    display: flex; align-items: center; gap: 9px; line-height: 1;
+    background: rgba(255,253,248,0.82); border: 1px solid #E7DABA;
+    border-radius: 16px; padding: 7px 13px; box-shadow: 0 4px 12px rgba(150,120,60,0.10);
+  }
+  .hud-label { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted-2); font-weight: 700; }
+  .hud-val { font-family: "DM Serif Display", serif; font-size: 19px; font-variant-numeric: tabular-nums; color: var(--ink); }
   .hud-val.gold { color: var(--gold); }
 
   /* score pop on game over */
-  .final-score { font-family: "Fraunces", serif; font-size: clamp(56px, 20vw, 96px); font-weight: 600; color: var(--gold); line-height: 1; margin: 0; }
-  .final-label { font-size: 13px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(255,247,238,0.7); margin: 0; }
-  .rings-line { font-size: 14px; color: var(--haze); margin: 0; }
+  .final-score { font-family: "DM Serif Display", serif; font-size: clamp(56px, 20vw, 92px); font-weight: 400; color: var(--ink); line-height: 1; margin: 0; text-shadow: 0 4px 18px rgba(60,40,80,0.12); }
+  .final-label { font-size: 12px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--muted); margin: 0; max-width: 28ch; line-height: 1.5; font-weight: 700; }
+  .rings-line { font-size: 14px; color: var(--gold-deep); font-weight: 700; margin: 0; }
 
   /* name entry */
-  .field { display: flex; flex-direction: column; gap: 6px; align-items: stretch; width: min(320px, 86vw); text-align: left; }
-  .field label { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,247,238,0.7); padding-left: 4px; }
+  .field { display: flex; flex-direction: column; gap: 8px; align-items: stretch; width: min(320px, 86vw); text-align: center; }
+  .field label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
   input[type="text"] {
-    font-family: "Outfit", sans-serif; font-size: 17px; color: var(--ink);
-    background: var(--ivory); border: none; border-radius: 14px; padding: 14px 16px; width: 100%;
+    font-family: "Karla", sans-serif; font-size: 17px; font-weight: 600; color: var(--ink);
+    background: var(--cream-2); border: 1.5px solid #E2D4B4; border-radius: 16px; padding: 15px 18px; width: 100%;
+    outline: none; transition: border-color .15s, box-shadow .15s; box-shadow: 0 6px 16px rgba(150,120,60,0.10);
+    text-align: center;
   }
-  input[type="text"]::placeholder { color: rgba(42,31,61,0.4); }
+  input[type="text"]:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(201,162,75,0.18); }
+  input[type="text"]::placeholder { color: #B7AC98; }
 
   /* leaderboard */
-  .board { width: min(380px, calc(100vw - 44px)); display: flex; flex-direction: column; gap: 7px; margin-top: 4px; }
+  .board { width: min(380px, calc(100vw - 44px)); display: flex; flex-direction: column; gap: 9px; margin-top: 4px; }
   .row {
     display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 12px;
-    padding: 12px 16px; border-radius: 14px; background: rgba(255,247,238,0.08);
+    padding: 13px 16px; border-radius: 16px;
+    background: rgba(255,253,248,0.58); border: 1.5px solid rgba(226,212,180,0.7);
+    box-shadow: 0 5px 12px rgba(150,120,60,0.07);
   }
-  .row.me { background: rgba(255,211,126,0.18); box-shadow: inset 0 0 0 1.5px var(--gold); }
-  .row .rank { font-family: "Fraunces", serif; font-style: italic; font-size: 19px; color: var(--gold); }
-  .row.top1 { background: rgba(255,211,126,0.22); box-shadow: inset 0 0 0 2px var(--gold); }
-  .row.top2 { background: rgba(200,200,210,0.18); box-shadow: inset 0 0 0 1.5px rgba(200,200,220,0.6); }
-  .row.top3 { background: rgba(205,127,50,0.18); box-shadow: inset 0 0 0 1.5px rgba(205,160,80,0.55); }
-  .row.top1 .rank { font-size: 23px; }
-  .medal { font-size: 20px; }
-  .row .who { font-weight: 600; font-size: 16px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .row .pts { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 17px; }
-  .row .pts small { font-weight: 500; font-size: 11px; color: rgba(255,247,238,0.6); margin-left: 3px; }
-  .board-empty { color: rgba(255,247,238,0.6); font-size: 14px; padding: 18px; }
+  .row.me { outline: 2px solid var(--gold); outline-offset: 1px; }
+  .row .rank { font-family: "DM Serif Display", serif; font-style: italic; font-size: 21px; color: var(--gold); text-align: center; }
+  .row.top1 { background: rgba(255,250,236,0.74); border: 2px solid #E0B748; box-shadow: 0 0 0 3px rgba(224,183,72,0.26), 0 8px 18px rgba(120,95,50,0.12); }
+  .row.top2 { background: rgba(255,250,236,0.74); border: 2px solid #B9BAC6; box-shadow: 0 0 0 3px rgba(185,186,198,0.26), 0 8px 18px rgba(120,95,50,0.12); }
+  .row.top3 { background: rgba(255,250,236,0.74); border: 2px solid #C0814F; box-shadow: 0 0 0 3px rgba(192,129,79,0.26), 0 8px 18px rgba(120,95,50,0.12); }
+  .medal { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: "Karla", sans-serif; font-weight: 800; font-size: 15px; color: #fff; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.14); }
+  .row.top1 .medal { background: #E0B748; }
+  .row.top2 .medal { background: #B9BAC6; }
+  .row.top3 .medal { background: #C0814F; }
+  .row .who { font-weight: 700; font-size: 15.5px; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .row .pts { font-variant-numeric: tabular-nums; font-weight: 800; font-size: 18px; color: var(--ink); }
+  .row .pts small { font-weight: 700; font-size: 11.5px; color: var(--gold-deep); margin-left: 4px; }
+  .board-empty { color: var(--muted); font-size: 14px; padding: 18px; }
   .scroll { max-height: 46vh; overflow-y: auto; overflow-x: hidden; width: 100%; display: flex; flex-direction: column; align-items: center; }
-  .top3-banner { background: rgba(255,211,126,0.12); border: 1.5px solid rgba(255,211,126,0.35); border-radius: 14px; padding: 10px 16px; font-size: 13px; color: var(--haze); max-width: min(380px, 90vw); line-height: 1.5; margin-top: 2px; }
+  .top3-banner { background: rgba(255,253,248,0.5); border: 1px solid rgba(201,162,75,0.45); border-radius: 14px; padding: 11px 16px; font-size: 12.5px; color: #5E5060; max-width: min(380px, 90vw); line-height: 1.4; margin-top: 2px; }
 
   /* QR */
-  #qrbox { background: var(--ivory); padding: 16px; border-radius: 18px; line-height: 0; margin: 4px 0; }
-  #qrbox img { display: block; width: min(240px, 64vw); height: auto; image-rendering: pixelated; }
-  .qr-note { font-size: 13px; color: rgba(255,247,238,0.72); max-width: 32ch; line-height: 1.5; }
+  #qrbox { background: var(--cream-2); padding: 18px; border: 1.5px solid #E2D4B4; border-radius: 24px; line-height: 0; margin: 4px 0; box-shadow: 0 14px 30px rgba(150,120,60,0.16); }
+  #qrbox img { display: block; width: min(212px, 60vw); height: auto; image-rendering: pixelated; }
+  .qr-note { font-size: 13px; color: var(--muted); max-width: 32ch; line-height: 1.5; font-style: italic; }
 
-  .tiny-link { background: none; border: none; color: rgba(255,247,238,0.65); font-size: 13px; text-decoration: underline; cursor: pointer; font-family: inherit; padding: 4px; }
+  .tiny-link { background: none; border: none; color: var(--gold-deep); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font-family: inherit; padding: 4px; }
   .tiny-link:hover { color: var(--gold); }
 
-  .picker-row { display: flex; gap: 16px; justify-content: center; }
+  .picker-row { display: flex; gap: 22px; justify-content: center; }
   .picker-card {
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-    background: rgba(255,247,238,0.08); border: 2px solid rgba(255,247,238,0.18);
-    border-radius: 22px; padding: 18px 22px 14px; cursor: pointer;
-    transition: transform .14s ease, border-color .14s ease, box-shadow .14s ease;
-    color: var(--ivory); font-family: "Outfit", sans-serif;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    background: transparent; border: none;
+    padding: 6px; cursor: pointer;
+    transition: transform .14s ease;
+    color: var(--ink); font-family: "Karla", sans-serif;
   }
-  .picker-card:hover { transform: translateY(-4px); border-color: var(--gold); box-shadow: 0 10px 30px rgba(255,211,126,0.25); }
+  .picker-card:hover { transform: translateY(-3px); }
   .picker-card:active { transform: scale(0.97); }
-  .picker-card.selected { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(255,211,126,0.35), 0 10px 30px rgba(255,211,126,0.25); }
+  .char-frame {
+    width: 118px; height: 118px; border-radius: 50%;
+    border: 1.5px solid #E2D4B4; background: var(--cream-2); overflow: hidden;
+    box-shadow: 0 10px 22px rgba(150,120,60,0.14);
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color .14s ease, box-shadow .14s ease;
+  }
+  .picker-card.selected .char-frame { border: 2.5px solid var(--gold); box-shadow: 0 0 0 4px rgba(201,162,75,0.16), 0 10px 22px rgba(150,120,60,0.14); }
   .char-canvas { display: block; }
-  .char-name { font-family: "Fraunces", serif; font-style: italic; font-size: 18px; font-weight: 600; color: var(--ivory); }
-  .char-role { font-size: 12px; letter-spacing: 0.12em; color: rgba(255,247,238,0.65); }
+  .char-name { font-family: "DM Serif Display", serif; font-size: 21px; font-weight: 400; color: var(--ink); margin-top: 10px; }
+  .char-role { font-style: italic; font-size: 12.5px; color: var(--muted-2); }
 
   @media (prefers-reduced-motion: reduce) {
     .btn { transition: none; }
@@ -170,18 +190,19 @@
 <div class="screen" id="startScreen">
   <p class="eyebrow">Ein Hochzeits-Dash</p>
   <h1 id="title">Hier kommt<br>das Paar</h1>
+  <div class="rule"></div>
   <p class="couple" id="coupleNames">Sam &amp; Alex · für immer</p>
-  <p class="lead" style="margin-bottom:4px">Wähle deinen Charakter:</p>
+  <p class="lead" style="margin-bottom:4px">Wähle deinen Charakter</p>
   <div class="picker-row">
-    <button class="picker-card" id="pickGroom" aria-label="Bräutigam wählen">
-      <canvas class="char-canvas" id="groomCanvas" width="80" height="100"></canvas>
-      <span class="char-name" id="groomLabel">Sam</span>
-      <span class="char-role">🤵 Bräutigam</span>
-    </button>
     <button class="picker-card" id="pickBride" aria-label="Braut wählen">
-      <canvas class="char-canvas" id="brideCanvas" width="80" height="100"></canvas>
+      <span class="char-frame"><canvas class="char-canvas" id="brideCanvas" width="100" height="120"></canvas></span>
       <span class="char-name" id="brideLabel">Verena</span>
-      <span class="char-role">👰 Braut</span>
+      <span class="char-role">Braut</span>
+    </button>
+    <button class="picker-card" id="pickGroom" aria-label="Bräutigam wählen">
+      <span class="char-frame"><canvas class="char-canvas" id="groomCanvas" width="100" height="120"></canvas></span>
+      <span class="char-name" id="groomLabel">Sam</span>
+      <span class="char-role">Bräutigam</span>
     </button>
   </div>
   <div class="btn-row">
@@ -245,7 +266,7 @@ const CONFIG = {
 
 /* apply config to copy */
 document.getElementById("title").innerHTML = CONFIG.titleLine1 + "<br>" + CONFIG.titleLine2;
-document.getElementById("coupleNames").innerHTML = CONFIG.partnerA + " &amp; " + CONFIG.partnerB + "<br>" + CONFIG.tagline;
+document.getElementById("coupleNames").innerHTML = CONFIG.partnerA + ' <span class="amp">&amp;</span> ' + CONFIG.partnerB + "<br>" + CONFIG.tagline;
 document.getElementById("groomLabel").textContent = CONFIG.partnerA;
 document.getElementById("brideLabel").textContent = CONFIG.partnerB;
 
@@ -254,121 +275,147 @@ document.getElementById("brideLabel").textContent = CONFIG.partnerB;
    ============================================================ */
 let selectedChar = null; // "groom" | "bride"
 
-function drawGroomPortrait(c) {
-  const ctx2 = c.getContext("2d");
-  const W2 = c.width, H2 = c.height;
-  ctx2.clearRect(0, 0, W2, H2);
-  const x = W2 / 2, y = H2 - 10;
+/* ============================================================
+   CHARACTER FIGURES — shared by portraits + in-game runner
+   Coordinate space: ~150 units tall, feet at footY, centered at cx.
+   opts: { legSwing, bob, hold } for running animation.
+   ============================================================ */
+function drawVerenaFig(g, cx, footY, s, opts = {}) {
+  const legSwing = opts.legSwing || 0, bob = opts.bob || 0;
+  const u = v => footY - (v + bob) * s;      // height above feet
+  const X = d => cx + d * s;
+  const rr = (x, y, w, h, r) => { g.beginPath(); g.roundRect(x, y, w, h, r); g.fill(); };
 
-  // legs
-  ctx2.strokeStyle = "#241A33"; ctx2.lineWidth = 4; ctx2.lineCap = "round";
-  ctx2.beginPath(); ctx2.moveTo(x - 5, y - 22); ctx2.lineTo(x - 8, y); ctx2.stroke();
-  ctx2.beginPath(); ctx2.moveTo(x + 5, y - 22); ctx2.lineTo(x + 8, y); ctx2.stroke();
+  // legs (skin)
+  g.strokeStyle = "#F8E3D2"; g.lineWidth = 6 * s; g.lineCap = "round";
+  g.beginPath(); g.moveTo(X(-7), u(30)); g.lineTo(X(-7 - legSwing), u(4)); g.stroke();
+  g.beginPath(); g.moveTo(X(7), u(30)); g.lineTo(X(7 + legSwing), u(4)); g.stroke();
+  // shoes (blush pink)
+  g.fillStyle = "#E79AA0";
+  g.beginPath(); g.ellipse(X(-7 - legSwing), u(3), 9 * s, 5 * s, 0, 0, Math.PI * 2); g.fill();
+  g.beginPath(); g.ellipse(X(7 + legSwing), u(3), 9 * s, 5 * s, 0, 0, Math.PI * 2); g.fill();
 
-  // suit
-  ctx2.fillStyle = "#2E2240";
-  ctx2.beginPath(); ctx2.roundRect(x - 13, y - 54, 26, 38, 7); ctx2.fill();
-  // shirt
-  ctx2.fillStyle = "#FFF7EE";
-  ctx2.beginPath(); ctx2.moveTo(x, y - 54); ctx2.lineTo(x - 5, y - 32); ctx2.lineTo(x + 5, y - 32); ctx2.closePath(); ctx2.fill();
-  // bowtie
-  ctx2.fillStyle = "#FF7A8A"; ctx2.fillRect(x - 4, y - 52, 8, 5);
+  // dress (white trapezoid) with soft shadow
+  g.fillStyle = "#FFFFFF";
+  g.beginPath();
+  g.moveTo(X(-11), u(94)); g.lineTo(X(11), u(94));
+  g.lineTo(X(26), u(14)); g.lineTo(X(-26), u(14)); g.closePath(); g.fill();
+  // dress inner shade
+  g.fillStyle = "rgba(200,180,160,0.16)";
+  g.beginPath(); g.moveTo(X(-11), u(94)); g.lineTo(X(-4), u(94)); g.lineTo(X(-14), u(14)); g.lineTo(X(-26), u(14)); g.closePath(); g.fill();
+  // sash (blush)
+  g.fillStyle = "#F4C7C2"; rr(X(-16), u(50), 32 * s, 5 * s, 2 * s);
+  // bodice
+  g.fillStyle = "#FFFFFF"; rr(X(-12), u(96), 24 * s, 20 * s, 6 * s);
 
-  // arms
-  ctx2.strokeStyle = "#2E2240"; ctx2.lineWidth = 6; ctx2.lineCap = "round";
-  ctx2.beginPath(); ctx2.moveTo(x - 13, y - 46); ctx2.lineTo(x - 24, y - 30); ctx2.stroke();
-  ctx2.beginPath(); ctx2.moveTo(x + 13, y - 46); ctx2.lineTo(x + 24, y - 30); ctx2.stroke();
+  // arms (skin)
+  g.strokeStyle = "#F8E3D2"; g.lineWidth = 6 * s; g.lineCap = "round";
+  g.beginPath(); g.moveTo(X(-12), u(90)); g.lineTo(X(-22), u(66)); g.stroke();
+  g.beginPath(); g.moveTo(X(12), u(90)); g.lineTo(X(22), u(66)); g.stroke();
 
-  // head
-  ctx2.fillStyle = "#D4956A";
-  ctx2.beginPath(); ctx2.arc(x, y - 64, 11, 0, Math.PI * 2); ctx2.fill();
+  // hair back (blonde)
+  g.fillStyle = "#EFC974";
+  g.beginPath(); g.ellipse(cx, u(120), 30 * s, 34 * s, 0, 0, Math.PI * 2); g.fill();
 
-  // dark brown hair
-  ctx2.fillStyle = "#3D2310";
-  ctx2.beginPath(); ctx2.arc(x, y - 67, 11, Math.PI, 0); ctx2.fill();
-  ctx2.beginPath(); ctx2.ellipse(x + 2, y - 75, 7, 4, -0.2, Math.PI, 0); ctx2.fill();
+  // head (skin)
+  g.fillStyle = "#F8E3D2";
+  g.beginPath(); g.arc(cx, u(120), 27 * s, 0, Math.PI * 2); g.fill();
 
-  // beard
-  ctx2.fillStyle = "#3D2310";
-  ctx2.beginPath(); ctx2.ellipse(x, y - 57, 7, 4, 0, 0, Math.PI); ctx2.fill();
-  ctx2.fillStyle = "rgba(61,35,16,0.5)";
-  ctx2.beginPath(); ctx2.ellipse(x - 6, y - 59, 4, 3, 0.3, 0, Math.PI * 2); ctx2.fill();
-  ctx2.beginPath(); ctx2.ellipse(x + 6, y - 59, 4, 3, -0.3, 0, Math.PI * 2); ctx2.fill();
+  // fringe (blonde, upper half)
+  g.fillStyle = "#EFC974";
+  g.beginPath(); g.ellipse(cx, u(132), 28 * s, 18 * s, 0, Math.PI, 0); g.fill();
+  g.beginPath(); g.roundRect(X(-28), u(140), 56 * s, 14 * s, 8 * s); g.fill();
+  // side locks
+  g.beginPath(); g.ellipse(X(-24), u(104), 8 * s, 20 * s, 0, 0, Math.PI * 2); g.fill();
+  g.beginPath(); g.ellipse(X(24), u(104), 8 * s, 20 * s, 0, 0, Math.PI * 2); g.fill();
 
-  // glasses
-  ctx2.strokeStyle = "#1A1A2E"; ctx2.lineWidth = 2; ctx2.lineCap = "round";
-  ctx2.beginPath(); ctx2.roundRect(x - 10, y - 68, 8, 5, 1.5); ctx2.stroke();
-  ctx2.beginPath(); ctx2.roundRect(x + 2, y - 68, 8, 5, 1.5); ctx2.stroke();
-  ctx2.beginPath(); ctx2.moveTo(x - 2, y - 65); ctx2.lineTo(x + 2, y - 65); ctx2.stroke();
-  ctx2.beginPath(); ctx2.moveTo(x - 10, y - 65); ctx2.lineTo(x - 13, y - 64); ctx2.stroke();
-  ctx2.beginPath(); ctx2.moveTo(x + 10, y - 65); ctx2.lineTo(x + 13, y - 64); ctx2.stroke();
-
+  // cheeks
+  g.fillStyle = "rgba(246,176,173,0.85)";
+  g.beginPath(); g.ellipse(X(-13), u(112), 6 * s, 4 * s, 0, 0, Math.PI * 2); g.fill();
+  g.beginPath(); g.ellipse(X(13), u(112), 6 * s, 4 * s, 0, 0, Math.PI * 2); g.fill();
   // eyes
-  ctx2.fillStyle = "#2A1F3D";
-  ctx2.beginPath(); ctx2.arc(x - 6, y - 65, 1.4, 0, Math.PI * 2); ctx2.fill();
-  ctx2.beginPath(); ctx2.arc(x + 6, y - 65, 1.4, 0, Math.PI * 2); ctx2.fill();
-
-  // smile
-  ctx2.strokeStyle = "#7A3B1E"; ctx2.lineWidth = 1.5;
-  ctx2.beginPath(); ctx2.arc(x, y - 57, 4, 0.1, Math.PI - 0.1); ctx2.stroke();
+  g.fillStyle = "#3A2E2A";
+  g.beginPath(); g.ellipse(X(-8), u(120), 2.6 * s, 3.6 * s, 0, 0, Math.PI * 2); g.fill();
+  g.beginPath(); g.ellipse(X(8), u(120), 2.6 * s, 3.6 * s, 0, 0, Math.PI * 2); g.fill();
+  // big bright smile
+  g.fillStyle = "#C75B53";
+  g.beginPath(); g.roundRect(X(-11), u(110), 22 * s, 12 * s, [3 * s, 3 * s, 11 * s, 11 * s]); g.fill();
+  g.fillStyle = "#FFFFFF";
+  g.beginPath(); g.roundRect(X(-11), u(110), 22 * s, 4 * s, 2 * s); g.fill();
 }
 
+function drawPhillipFig(g, cx, footY, s, opts = {}) {
+  const legSwing = opts.legSwing || 0, bob = opts.bob || 0;
+  const u = v => footY - (v + bob) * s;
+  const X = d => cx + d * s;
+  const rr = (x, y, w, h, r) => { g.beginPath(); g.roundRect(x, y, w, h, r); g.fill(); };
+
+  // legs (trousers)
+  g.strokeStyle = "#5E7F94"; g.lineWidth = 7 * s; g.lineCap = "round";
+  g.beginPath(); g.moveTo(X(-7), u(34)); g.lineTo(X(-7 - legSwing), u(5)); g.stroke();
+  g.beginPath(); g.moveTo(X(7), u(34)); g.lineTo(X(7 + legSwing), u(5)); g.stroke();
+  // shoes (dark)
+  g.fillStyle = "#3A3A3A";
+  g.beginPath(); g.ellipse(X(-7 - legSwing), u(3), 9 * s, 5 * s, 0, 0, Math.PI * 2); g.fill();
+  g.beginPath(); g.ellipse(X(7 + legSwing), u(3), 9 * s, 5 * s, 0, 0, Math.PI * 2); g.fill();
+
+  // arms (sleeves)
+  g.strokeStyle = "#7FA6BC"; g.lineWidth = 7 * s; g.lineCap = "round";
+  g.beginPath(); g.moveTo(X(-13), u(88)); g.lineTo(X(-22), u(62)); g.stroke();
+  g.beginPath(); g.moveTo(X(13), u(88)); g.lineTo(X(22), u(62)); g.stroke();
+
+  // suit jacket
+  g.fillStyle = "#7FA6BC"; rr(X(-15), u(96), 30 * s, 62 * s, [8 * s, 8 * s, 6 * s, 6 * s]);
+  // white shirt V
+  g.fillStyle = "#FFFFFF";
+  g.beginPath(); g.moveTo(cx, u(70)); g.lineTo(X(-9), u(96)); g.lineTo(X(9), u(96)); g.closePath(); g.fill();
+  // lapels (darker blue)
+  g.fillStyle = "#6B92A8";
+  g.beginPath(); g.moveTo(X(-13), u(96)); g.lineTo(X(-1), u(96)); g.lineTo(X(-13), u(78)); g.closePath(); g.fill();
+  g.beginPath(); g.moveTo(X(13), u(96)); g.lineTo(X(1), u(96)); g.lineTo(X(13), u(78)); g.closePath(); g.fill();
+  // tie
+  g.fillStyle = "#3F5B6B";
+  g.beginPath(); g.moveTo(cx, u(96)); g.lineTo(X(-4), u(90)); g.lineTo(cx, u(72)); g.lineTo(X(4), u(90)); g.closePath(); g.fill();
+
+  // head (skin)
+  g.fillStyle = "#EFCBA6";
+  g.beginPath(); g.arc(cx, u(120), 27 * s, 0, Math.PI * 2); g.fill();
+
+  // hair (brown, short, higher hairline)
+  g.fillStyle = "#6E4B2E";
+  g.beginPath(); g.ellipse(cx, u(138), 28 * s, 14 * s, 0, Math.PI, 0); g.fill();
+  g.beginPath(); g.roundRect(X(-27), u(138), 54 * s, 10 * s, 6 * s); g.fill();
+  // sideburns
+  g.beginPath(); g.roundRect(X(-27), u(122), 5 * s, 10 * s, 2 * s); g.fill();
+  g.beginPath(); g.roundRect(X(22), u(122), 5 * s, 10 * s, 2 * s); g.fill();
+
+  // glasses
+  g.strokeStyle = "#3A3A3A"; g.lineWidth = 3 * s;
+  g.beginPath(); g.roundRect(X(-19), u(126), 15 * s, 12 * s, 5 * s); g.stroke();
+  g.beginPath(); g.roundRect(X(4), u(126), 15 * s, 12 * s, 5 * s); g.stroke();
+  g.beginPath(); g.moveTo(X(-4), u(120)); g.lineTo(X(4), u(120)); g.stroke();
+  // eyes
+  g.fillStyle = "#3A2E2A";
+  g.beginPath(); g.arc(X(-11), u(120), 2.4 * s, 0, Math.PI * 2); g.fill();
+  g.beginPath(); g.arc(X(11), u(120), 2.4 * s, 0, Math.PI * 2); g.fill();
+  // moustache
+  g.fillStyle = "#6E4B2E";
+  g.beginPath(); g.ellipse(X(-5), u(108), 7 * s, 3.5 * s, 0.2, 0, Math.PI * 2); g.fill();
+  g.beginPath(); g.ellipse(X(5), u(108), 7 * s, 3.5 * s, -0.2, 0, Math.PI * 2); g.fill();
+  // mouth
+  g.fillStyle = "#B5564E";
+  g.beginPath(); g.roundRect(X(-7), u(104), 14 * s, 6 * s, [2 * s, 2 * s, 8 * s, 8 * s]); g.fill();
+}
+
+function drawGroomPortrait(c) {
+  const g = c.getContext("2d");
+  g.clearRect(0, 0, c.width, c.height);
+  drawPhillipFig(g, c.width / 2, c.height - 4, (c.height - 8) / 150);
+}
 function drawBridePortrait(c) {
-  const ctx2 = c.getContext("2d");
-  const W2 = c.width, H2 = c.height;
-  ctx2.clearRect(0, 0, W2, H2);
-  const x = W2 / 2, y = H2 - 10;
-
-  // dress — full white with gentle flare
-  ctx2.fillStyle = "#FFF7EE";
-  ctx2.beginPath(); ctx2.moveTo(x, y - 52); ctx2.lineTo(x - 20, y); ctx2.lineTo(x + 20, y); ctx2.closePath(); ctx2.fill();
-  // gold sash
-  ctx2.fillStyle = "rgba(255,211,126,0.65)"; ctx2.fillRect(x - 12, y - 38, 24, 4);
-  // bodice
-  ctx2.fillStyle = "#FFF7EE"; ctx2.beginPath(); ctx2.roundRect(x - 10, y - 56, 20, 14, 5); ctx2.fill();
-
-  // arms
-  ctx2.strokeStyle = "#D4956A"; ctx2.lineWidth = 5; ctx2.lineCap = "round";
-  ctx2.beginPath(); ctx2.moveTo(x - 10, y - 50); ctx2.lineTo(x - 20, y - 34); ctx2.stroke();
-  ctx2.beginPath(); ctx2.moveTo(x + 10, y - 50); ctx2.lineTo(x + 20, y - 34); ctx2.stroke();
-
-  // bouquet
-  ctx2.fillStyle = "#FF7A8A"; ctx2.beginPath(); ctx2.arc(x + 22, y - 28, 7, 0, Math.PI * 2); ctx2.fill();
-  ctx2.fillStyle = "#FFF7EE"; ctx2.beginPath(); ctx2.arc(x + 22, y - 28, 3, 0, Math.PI * 2); ctx2.fill();
-
-  // head — Verena's lighter warm skin
-  ctx2.fillStyle = "#E8C4A0";
-  ctx2.beginPath(); ctx2.arc(x, y - 66, 12, 0, Math.PI * 2); ctx2.fill();
-
-  // blonde hair — medium length, natural
-  // back layer
-  ctx2.fillStyle = "#C8A96E";
-  ctx2.beginPath(); ctx2.ellipse(x, y - 66, 13, 13, 0, Math.PI, 0); ctx2.fill();
-  ctx2.beginPath(); ctx2.ellipse(x - 10, y - 60, 5, 9, -0.3, 0, Math.PI * 2); ctx2.fill();
-  ctx2.beginPath(); ctx2.ellipse(x + 10, y - 60, 5, 9, 0.3, 0, Math.PI * 2); ctx2.fill();
-  // front hair layer — slightly lighter
-  ctx2.fillStyle = "#D4B47A";
-  ctx2.beginPath(); ctx2.arc(x, y - 68, 12, Math.PI, 0); ctx2.fill();
-  // soft side parting
-  ctx2.fillStyle = "#C8A96E";
-  ctx2.beginPath(); ctx2.ellipse(x - 4, y - 76, 6, 4, -0.2, Math.PI, 0); ctx2.fill();
-
-  // eyes — Verena has slightly rounder eyes
-  ctx2.fillStyle = "#3A2A1A";
-  ctx2.beginPath(); ctx2.ellipse(x - 4.5, y - 67, 2, 1.6, 0, 0, Math.PI * 2); ctx2.fill();
-  ctx2.beginPath(); ctx2.ellipse(x + 4.5, y - 67, 2, 1.6, 0, 0, Math.PI * 2); ctx2.fill();
-  // eye shine
-  ctx2.fillStyle = "rgba(255,255,255,0.7)";
-  ctx2.beginPath(); ctx2.arc(x - 3.5, y - 68, 0.7, 0, Math.PI * 2); ctx2.fill();
-  ctx2.beginPath(); ctx2.arc(x + 5.5, y - 68, 0.7, 0, Math.PI * 2); ctx2.fill();
-
-  // warm smile
-  ctx2.strokeStyle = "#8B4513"; ctx2.lineWidth = 1.6;
-  ctx2.beginPath(); ctx2.arc(x, y - 62, 4.5, 0.1, Math.PI - 0.1); ctx2.stroke();
-  // cheek blush
-  ctx2.fillStyle = "rgba(255,150,130,0.25)";
-  ctx2.beginPath(); ctx2.ellipse(x - 8, y - 62, 4, 2.5, 0, 0, Math.PI * 2); ctx2.fill();
-  ctx2.beginPath(); ctx2.ellipse(x + 8, y - 62, 4, 2.5, 0, 0, Math.PI * 2); ctx2.fill();
+  const g = c.getContext("2d");
+  g.clearRect(0, 0, c.width, c.height);
+  drawVerenaFig(g, c.width / 2, c.height - 4, (c.height - 8) / 150);
 }
 
 function selectChar(char) {
@@ -532,13 +579,14 @@ function initAmbient() {
     const t = i / n;
     lights.push({ t, phase: Math.random() * Math.PI * 2 });
   }
-  // soft bokeh
+  // floating confetti petals
   bokeh = [];
-  for (let i = 0; i < 14; i++) {
+  for (let i = 0; i < 16; i++) {
     bokeh.push({
-      x: Math.random() * W, y: Math.random() * groundY,
-      r: 8 + Math.random() * 26, a: 0.05 + Math.random() * 0.12,
-      vx: -6 - Math.random() * 10,
+      x: Math.random() * W, y: Math.random() * groundY * 0.8,
+      pr: 4 + Math.random() * 4, rot: Math.random() * Math.PI * 2,
+      col: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
+      vx: -6 - Math.random() * 10, r: 20,
     });
   }
   petals = [];
@@ -661,7 +709,7 @@ function update(dt) {
     if (b.x < -b.r) { b.x = W + b.r; b.y = Math.random() * groundY; }
   }
   if (!reduceMotion && Math.random() < dt * 6) {
-    petals.push({ x: W + 10, y: Math.random() * groundY * 0.6, vx: -speed * 0.3 - 20, vy: 20 + Math.random() * 30, rot: Math.random() * 6, vr: (Math.random() - 0.5) * 4, s: 4 + Math.random() * 4 });
+    petals.push({ x: W + 10, y: Math.random() * groundY * 0.6, vx: -speed * 0.3 - 20, vy: 20 + Math.random() * 30, rot: Math.random() * 6, vr: (Math.random() - 0.5) * 4, s: 4 + Math.random() * 4, col: CONFETTI_COLORS[Math.floor(Math.random() * 3)] });
   }
   for (const pt of petals) { pt.x += pt.vx * dt; pt.y += pt.vy * dt; pt.rot += pt.vr * dt; }
   petals = petals.filter(pt => pt.x > -20 && pt.y < H + 20);
@@ -676,191 +724,157 @@ function update(dt) {
    ============================================================ */
 function drawSky() {
   const g = ctx.createLinearGradient(0, 0, 0, H);
-  g.addColorStop(0, "#3A2A5C");
-  g.addColorStop(0.42, "#8E4D7B");
-  g.addColorStop(0.72, "#E8927C");
-  g.addColorStop(0.86, "#F6C28B");
-  g.addColorStop(1, "#F6C28B");
+  g.addColorStop(0, "#CFE2EA");
+  g.addColorStop(0.44, "#D6D2E2");
+  g.addColorStop(0.78, "#C9B6D2");
+  g.addColorStop(1, "#B89BC0");
   ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
 
-  // sun glow on horizon
-  const sg = ctx.createRadialGradient(W * 0.5, groundY, 10, W * 0.5, groundY, W * 0.7);
-  sg.addColorStop(0, "rgba(255,231,184,0.55)");
-  sg.addColorStop(1, "rgba(255,231,184,0)");
-  ctx.fillStyle = sg; ctx.fillRect(0, 0, W, groundY + 20);
+  // soft warm glow near top
+  const sg = ctx.createRadialGradient(W * 0.5, -30, 10, W * 0.5, -30, 200);
+  sg.addColorStop(0, "rgba(247,226,160,0.45)");
+  sg.addColorStop(1, "rgba(247,226,160,0)");
+  ctx.fillStyle = sg; ctx.fillRect(0, 0, W, 240);
 }
 
+const CONFETTI_COLORS = ["#E8A9A2", "#D9B968", "#AFCBD6"];
 function drawBokeh() {
+  // floating confetti petals (repurposed bokeh field)
   for (const b of bokeh) {
-    ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(255,231,184,${b.a})`; ctx.fill();
+    ctx.save(); ctx.translate(b.x, b.y); ctx.rotate(b.rot || 0);
+    ctx.fillStyle = b.col || "#D9B968";
+    ctx.globalAlpha = 0.6;
+    ctx.beginPath(); ctx.ellipse(0, 0, b.pr || 4, (b.pr || 4) * 0.5, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
   }
+  ctx.globalAlpha = 1;
 }
 
 function drawLights(time) {
-  // catenary garland across top
-  const x0 = -10, x1 = W + 10;
-  const sag = 46;
-  ctx.lineWidth = 2;
-  ctx.strokeStyle = "rgba(42,31,61,0.55)";
-  ctx.beginPath();
-  for (let i = 0; i <= 60; i++) {
-    const t = i / 60;
-    const x = x0 + (x1 - x0) * t;
-    const y = 30 + Math.sin(t * Math.PI) * sag;
-    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-  }
-  ctx.stroke();
-  for (const L of lights) {
-    const x = x0 + (x1 - x0) * L.t;
-    const y = 30 + Math.sin(L.t * Math.PI) * sag + 8;
-    const flick = reduceMotion ? 1 : 0.75 + 0.25 * Math.sin(time * 2 + L.phase);
-    const glow = ctx.createRadialGradient(x, y, 0, x, y, 16);
-    glow.addColorStop(0, `rgba(255,211,126,${0.9 * flick})`);
-    glow.addColorStop(1, "rgba(255,211,126,0)");
-    ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(x, y, 16, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = `rgba(255,243,214,${flick})`;
-    ctx.beginPath(); ctx.arc(x, y, 3.2, 0, Math.PI * 2); ctx.fill();
+  // bunting: string of triangle flags across the top
+  const cols = ["#E8A9A2", "#D9B968", "#AFCBD6"];
+  const flagW = 20, gap = 6, step = flagW + gap;
+  const topY = 30 + Math.max(0, env_top());
+  // string
+  ctx.strokeStyle = "#D8C9A8"; ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.moveTo(0, topY); ctx.lineTo(W, topY); ctx.stroke();
+  // flags
+  let i = 0;
+  for (let x = 6; x < W - flagW; x += step, i++) {
+    ctx.fillStyle = cols[i % cols.length];
+    ctx.beginPath();
+    ctx.moveTo(x, topY); ctx.lineTo(x + flagW, topY); ctx.lineTo(x + flagW / 2, topY + 24);
+    ctx.closePath(); ctx.fill();
   }
 }
+function env_top() { return 0; }
 
 function drawGround() {
-  ctx.fillStyle = "#2A1F3D";
-  ctx.fillRect(0, groundY, W, H - groundY);
-  // aisle path
-  ctx.fillStyle = "rgba(255,247,238,0.10)";
-  ctx.fillRect(0, groundY, W, 5);
-  // moving dashes (petals on aisle)
-  ctx.fillStyle = "rgba(255,122,138,0.5)";
-  const dash = 36, off = worldX % dash;
-  for (let x = -off; x < W; x += dash) {
-    ctx.beginPath(); ctx.ellipse(x, groundY + 16, 5, 3, 0, 0, Math.PI * 2); ctx.fill();
+  const gy = groundY;
+  // grass/aisle band
+  const g = ctx.createLinearGradient(0, gy, 0, H);
+  g.addColorStop(0, "#D8C495"); g.addColorStop(1, "#CDB67F");
+  ctx.fillStyle = g; ctx.fillRect(0, gy, W, H - gy);
+  // top edge line
+  ctx.fillStyle = "rgba(169,128,59,0.85)";
+  ctx.fillRect(0, gy, W, 3);
+  // scattered aisle petals (moving)
+  const dash = 46, off = worldX % dash;
+  let k = 0;
+  for (let x = -off; x < W; x += dash, k++) {
+    ctx.save(); ctx.translate(x, gy + 22 + (k % 2) * 10); ctx.rotate(0.3 * (k % 3));
+    ctx.fillStyle = CONFETTI_COLORS[k % 3]; ctx.globalAlpha = 0.6;
+    ctx.beginPath(); ctx.ellipse(0, 0, 4, 2.5, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
   }
+  ctx.globalAlpha = 1;
 }
 
 function drawRunner() {
   const x = runner.x, y = runner.y;
   const air = !runner.onGround;
-  const swing = air ? 0.5 : Math.sin(runCycle) * 0.9;
-  const swing2 = air ? -0.5 : Math.sin(runCycle + Math.PI) * 0.9;
-  const bob = air ? 0 : Math.abs(Math.sin(runCycle)) * 2;
+  const s = 0.62;
+  const legSwing = air ? 5 : Math.sin(runCycle) * 7;
+  const bob = air ? 0 : Math.abs(Math.sin(runCycle)) * 2.5;
 
-  function leg(px, baseY, ang, color) {
-    ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.lineCap = "round";
-    ctx.beginPath(); ctx.moveTo(px, baseY - 22);
-    ctx.lineTo(px + Math.sin(ang) * 14, baseY + Math.cos(ang) * 14);
-    ctx.stroke();
+  // contact shadow
+  if (!air) {
+    ctx.fillStyle = "rgba(90,60,20,0.20)";
+    ctx.beginPath(); ctx.ellipse(x, y + 2, 22, 5, 0, 0, Math.PI * 2); ctx.fill();
   }
 
   if (selectedChar === "bride") {
-    // ---- VERENA solo ----
-    leg(x, y - bob, swing2 * 0.7, "#D4956A");
-    // dress
-    ctx.fillStyle = "#FFF7EE";
-    ctx.beginPath();
-    ctx.moveTo(x, y - 52 - bob);
-    ctx.lineTo(x - 18, y - bob);
-    ctx.lineTo(x + 16, y - bob);
-    ctx.closePath(); ctx.fill();
-    // sash
-    ctx.fillStyle = "rgba(255,211,126,0.55)"; ctx.fillRect(x - 10, y - 38 - bob, 20, 4);
-    // bodice
-    ctx.fillStyle = "#FFF7EE"; ctx.beginPath(); ctx.roundRect(x - 11, y - 58 - bob, 22, 14, 6); ctx.fill();
-    // arms
-    ctx.strokeStyle = "#D4956A"; ctx.lineWidth = 5; ctx.lineCap = "round";
-    ctx.beginPath(); ctx.moveTo(x - 11, y - 52 - bob); ctx.lineTo(x - 22, y - 36 - bob); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(x + 11, y - 52 - bob); ctx.lineTo(x + 22, y - 36 - bob); ctx.stroke();
-    // bouquet
-    const bq = x + 22 + Math.sin(runCycle) * 3;
-    ctx.fillStyle = "#FF7A8A"; ctx.beginPath(); ctx.arc(bq, y - 30 - bob, 8, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = "#FFF7EE"; ctx.beginPath(); ctx.arc(bq, y - 30 - bob, 3, 0, Math.PI * 2); ctx.fill();
-    // head
-    ctx.fillStyle = "#E8C4A0"; ctx.beginPath(); ctx.arc(x, y - 68 - bob, 11, 0, Math.PI * 2); ctx.fill();
-    // blonde hair — back layer
-    ctx.fillStyle = "#C8A96E";
-    ctx.beginPath(); ctx.ellipse(x, y - 68 - bob, 13, 12, 0, Math.PI, 0); ctx.fill();
-    ctx.beginPath(); ctx.ellipse(x - 10, y - 62 - bob, 4, 8, -0.3, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath(); ctx.ellipse(x + 10, y - 62 - bob, 4, 8, 0.3, 0, Math.PI * 2); ctx.fill();
-    // front hair
-    ctx.fillStyle = "#D4B47A"; ctx.beginPath(); ctx.arc(x, y - 70 - bob, 11, Math.PI, 0); ctx.fill();
-    // veil
-    ctx.fillStyle = "rgba(255,247,238,0.82)";
-    ctx.beginPath(); ctx.moveTo(x + 2, y - 79 - bob); ctx.quadraticCurveTo(x + 18, y - 68 - bob, x + 14, y - 44 - bob); ctx.quadraticCurveTo(x + 7, y - 56 - bob, x + 2, y - 62 - bob); ctx.fill();
-    // cheek blush
-    ctx.fillStyle = "rgba(255,150,130,0.28)";
-    ctx.beginPath(); ctx.ellipse(x - 8, y - 64 - bob, 4, 2.5, 0, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath(); ctx.ellipse(x + 8, y - 64 - bob, 4, 2.5, 0, 0, Math.PI * 2); ctx.fill();
+    drawVerenaFig(ctx, x, y, s, { legSwing, bob });
   } else {
-    // ---- PHILIPP solo (groom) ----
-    leg(x - 5, y - bob, swing, "#241A33");
-    leg(x + 5, y - bob, swing2, "#241A33");
-    // suit
-    ctx.fillStyle = "#2E2240"; ctx.beginPath(); ctx.roundRect(x - 13, y - 54 - bob, 26, 38, 7); ctx.fill();
-    // shirt
-    ctx.fillStyle = "#FFF7EE";
-    ctx.beginPath(); ctx.moveTo(x, y - 54 - bob); ctx.lineTo(x - 5, y - 32 - bob); ctx.lineTo(x + 5, y - 32 - bob); ctx.closePath(); ctx.fill();
-    // bowtie
-    ctx.fillStyle = "#FF7A8A"; ctx.fillRect(x - 4, y - 52 - bob, 8, 5);
-    // arms
-    ctx.strokeStyle = "#2E2240"; ctx.lineWidth = 6; ctx.lineCap = "round";
-    ctx.beginPath(); ctx.moveTo(x - 13, y - 46 - bob); ctx.lineTo(x - 24, y - 30 - bob); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(x + 13, y - 46 - bob); ctx.lineTo(x + 24, y - 30 - bob); ctx.stroke();
-    // head
-    ctx.fillStyle = "#D4956A"; ctx.beginPath(); ctx.arc(x, y - 64 - bob, 11, 0, Math.PI * 2); ctx.fill();
-    // dark brown hair
-    ctx.fillStyle = "#3D2310"; ctx.beginPath(); ctx.arc(x, y - 67 - bob, 11, Math.PI, 0); ctx.fill();
-    ctx.beginPath(); ctx.ellipse(x + 2, y - 75 - bob, 7, 4, -0.2, Math.PI, 0); ctx.fill();
-    // beard
-    ctx.fillStyle = "#3D2310";
-    ctx.beginPath(); ctx.ellipse(x, y - 57 - bob, 7, 4, 0, 0, Math.PI); ctx.fill();
-    // glasses
-    ctx.strokeStyle = "#1A1A2E"; ctx.lineWidth = 2; ctx.lineCap = "round";
-    ctx.beginPath(); ctx.roundRect(x - 10, y - 68 - bob, 8, 5, 1.5); ctx.stroke();
-    ctx.beginPath(); ctx.roundRect(x + 2, y - 68 - bob, 8, 5, 1.5); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(x - 2, y - 65 - bob); ctx.lineTo(x + 2, y - 65 - bob); ctx.stroke();
+    drawPhillipFig(ctx, x, y, s, { legSwing, bob });
   }
 }
 
 function drawObstacle(o) {
   const baseY = groundY;
-  const cx = o.x + o.w / 2, topY = baseY - o.h;
+  const cx = o.x + o.w / 2;
+  const rr = (x, y, w, h, r) => { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); ctx.fill(); };
 
-  // danger aura — signals "avoid"
-  const aura = ctx.createRadialGradient(cx, baseY - o.h / 2, 4, cx, baseY - o.h / 2, o.h + 14);
-  aura.addColorStop(0, "rgba(255,70,70,0.32)");
-  aura.addColorStop(1, "rgba(255,70,70,0)");
-  ctx.fillStyle = aura;
-  ctx.fillRect(o.x - 28, topY - 28, o.w + 56, o.h + 44);
-  // red ground marker beneath it
-  ctx.fillStyle = "rgba(255,60,60,0.55)";
-  ctx.beginPath(); ctx.ellipse(cx, baseY + 4, o.w * 0.62, 5, 0, 0, Math.PI * 2); ctx.fill();
+  // soft contact shadow
+  ctx.fillStyle = "rgba(90,60,20,0.18)";
+  ctx.beginPath(); ctx.ellipse(cx, baseY + 3, o.w * 0.6, 4, 0, 0, Math.PI * 2); ctx.fill();
 
   if (o.type === "cake") {
-    const tiers = [[o.w, 26], [o.w * 0.72, 24], [o.w * 0.46, 20]];
+    // three cream tiers with pink top edge
+    const tiers = [[o.w, 26], [o.w * 0.72, 22], [o.w * 0.5, 18]];
     let yy = baseY;
     for (const [tw, th] of tiers) {
-      ctx.fillStyle = "#FFF7EE";
-      ctx.beginPath(); ctx.roundRect(o.x + (o.w - tw) / 2, yy - th, tw, th, 5); ctx.fill();
-      ctx.fillStyle = "#FF7A8A";
-      ctx.fillRect(o.x + (o.w - tw) / 2, yy - th, tw, 4);
+      const tx = cx - tw / 2;
+      ctx.fillStyle = "#FFFDFB"; rr(tx, yy - th, tw, th, 6);
+      ctx.fillStyle = "#F2D8D4"; rr(tx + 2, yy - th + 2, tw - 4, 4, 2); // pink icing edge
       yy -= th;
     }
-    ctx.fillStyle = "#FF7A8A"; ctx.beginPath(); ctx.arc(o.x + o.w / 2, yy - 4, 4, 0, Math.PI * 2); ctx.fill();
+    // gold diamond topper
+    ctx.save(); ctx.translate(cx, yy - 5); ctx.rotate(Math.PI / 4);
+    ctx.fillStyle = "#D9B968"; ctx.fillRect(-4, -4, 8, 8); ctx.restore();
+    // little dots on base
+    ctx.fillStyle = "#E8A9A2";
+    ctx.beginPath(); ctx.arc(cx - 9, baseY - 5, 2, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(cx + 9, baseY - 5, 2, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#D9B968";
+    ctx.beginPath(); ctx.arc(cx, baseY - 4, 2, 0, Math.PI * 2); ctx.fill();
   } else if (o.type === "champagne") {
-    ctx.fillStyle = "#3E6B4A";
-    ctx.beginPath(); ctx.roundRect(o.x + 6, baseY - o.h, 14, o.h, 6); ctx.fill();
-    ctx.fillStyle = "#3E6B4A"; ctx.fillRect(o.x + 10, baseY - o.h - 10, 6, 12);
-    ctx.fillStyle = "#EFE3D0"; ctx.fillRect(o.x + 8, baseY - o.h + 8, 10, 7);
-    for (let i = 0; i < 3; i++) { ctx.beginPath(); ctx.arc(o.x + 13, baseY - o.h - 14 - i * 7, 2, 0, Math.PI * 2); ctx.fillStyle = "rgba(255,243,214,0.7)"; ctx.fill(); }
+    const bx = cx; // bottle center
+    // bottle body (green gradient)
+    const grad = ctx.createLinearGradient(bx - 11, 0, bx + 11, 0);
+    grad.addColorStop(0, "#2C5F45"); grad.addColorStop(1, "#3F7C5A");
+    ctx.fillStyle = grad; rr(bx - 11, baseY - 38, 22, 38, [9, 9, 8, 8]);
+    // shoulder taper
+    ctx.fillStyle = "#35694D"; rr(bx - 7, baseY - 50, 14, 14, [7, 7, 3, 3]);
+    // neck
+    ctx.fillStyle = "#2C5F45"; rr(bx - 5, baseY - 66, 10, 18, 3);
+    // glass highlight
+    ctx.fillStyle = "rgba(255,255,255,0.22)"; rr(bx - 8, baseY - 34, 4, 28, 2);
+    // gold foil band + cap
+    ctx.fillStyle = "#D9B968"; rr(bx - 6, baseY - 68, 12, 6, 2);
+    ctx.fillStyle = "#E7C977"; rr(bx - 6, baseY - 77, 12, 9, [3, 3, 2, 2]);
+    // pop sparkle
+    ctx.fillStyle = "#FFF1C4";
+    ctx.fillRect(bx - 12, baseY - 82, 2, 8); ctx.fillRect(bx - 15, baseY - 79, 8, 2);
+    ctx.beginPath(); ctx.arc(bx + 10, baseY - 74, 2, 0, Math.PI * 2); ctx.fill();
   } else {
-    ctx.fillStyle = "#B5557A";
-    ctx.beginPath(); ctx.roundRect(o.x, baseY - o.h, o.w, o.h, 5); ctx.fill();
-    ctx.fillStyle = "#FFF7EE"; ctx.fillRect(o.x + o.w / 2 - 3, baseY - o.h, 6, o.h);
-    ctx.fillRect(o.x, baseY - o.h / 2 - 3, o.w, 6);
-    ctx.beginPath(); ctx.arc(o.x + o.w / 2 - 5, baseY - o.h - 3, 5, 0, Math.PI * 2);
-    ctx.arc(o.x + o.w / 2 + 5, baseY - o.h - 3, 5, 0, Math.PI * 2); ctx.fill();
+    // gift box (teal) with cream ribbon
+    const bx = cx;
+    ctx.fillStyle = "#2E9C8E"; rr(bx - 17, baseY - 34, 34, 34, 3);   // body
+    ctx.fillStyle = "#33AC9C"; rr(bx - 21, baseY - 47, 42, 14, 4);   // lid
+    // vertical ribbon
+    ctx.fillStyle = "#FBE7C9"; ctx.fillRect(bx - 4, baseY - 47, 8, 47);
+    ctx.fillStyle = "#FFF6E2"; ctx.fillRect(bx - 4, baseY - 47, 3, 47);
+    // bow loops
+    ctx.fillStyle = "#FBE7C9";
+    ctx.save(); ctx.translate(bx - 6, baseY - 50); ctx.rotate(-0.3);
+    ctx.beginPath(); ctx.ellipse(0, 0, 8, 6, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    ctx.save(); ctx.translate(bx + 6, baseY - 50); ctx.rotate(0.3);
+    ctx.beginPath(); ctx.ellipse(0, 0, 8, 6, 0, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+    // bow knot
+    ctx.fillStyle = "#EBD3A0";
+    ctx.beginPath(); ctx.arc(bx, baseY - 49, 5, 0, Math.PI * 2); ctx.fill();
   }
-
 }
 
 function drawRing(p) {
@@ -875,14 +889,14 @@ function drawRing(p) {
   ctx.fillStyle = halo;
   ctx.beginPath(); ctx.arc(p.x, y, p.r + 24, 0, Math.PI * 2); ctx.fill();
   // the ring — bright core stroke with soft glow
-  ctx.strokeStyle = "#FFE9B8"; ctx.lineWidth = 5;
-  ctx.shadowColor = "rgba(255,211,126,0.95)"; ctx.shadowBlur = 18;
+  ctx.strokeStyle = "#F2C94C"; ctx.lineWidth = 5;
+  ctx.shadowColor = "rgba(255,205,70,0.95)"; ctx.shadowBlur = 18;
   ctx.beginPath(); ctx.arc(p.x, y, p.r, 0, Math.PI * 2); ctx.stroke();
-  ctx.strokeStyle = "#FFD37E"; ctx.lineWidth = 2;
+  ctx.strokeStyle = "#E0A92E"; ctx.lineWidth = 1.5;
   ctx.beginPath(); ctx.arc(p.x, y, p.r, 0, Math.PI * 2); ctx.stroke();
   ctx.shadowBlur = 0;
   // diamond
-  ctx.fillStyle = "#FFFFFF";
+  ctx.fillStyle = "#FFE17A";
   ctx.beginPath(); ctx.moveTo(p.x, y - p.r - 6); ctx.lineTo(p.x - 5, y - p.r); ctx.lineTo(p.x + 5, y - p.r); ctx.closePath(); ctx.fill();
   // twinkle sparkle
   const tw = reduceMotion ? 1 : (0.4 + 0.6 * Math.abs(Math.sin(p.bob * 3)));
@@ -898,10 +912,11 @@ function drawRing(p) {
 function drawPetals() {
   for (const pt of petals) {
     ctx.save(); ctx.translate(pt.x, pt.y); ctx.rotate(pt.rot);
-    ctx.fillStyle = "rgba(255,122,138,0.85)";
+    ctx.fillStyle = pt.col || "#E8A9A2"; ctx.globalAlpha = 0.85;
     ctx.beginPath(); ctx.ellipse(0, 0, pt.s, pt.s * 0.5, 0, 0, Math.PI * 2); ctx.fill();
     ctx.restore();
   }
+  ctx.globalAlpha = 1;
 }
 
 function render(time) {
@@ -953,21 +968,20 @@ async function renderBoard(myEntry) {
     list.appendChild(d);
     return;
   }
-  const medals = ["🥇", "🥈", "🥉"];
   board.slice(0, 12).forEach((e, i) => {
     const row = document.createElement("div");
     const topClass = i < 3 ? ` top${i + 1}` : "";
     row.className = "row" + topClass;
-    if (myEntry && e.name === myEntry.name && e.score === myEntry.score && e.char === myEntry.char) {
+    if (myEntry && e.name === myEntry.name && e.score === myEntry.score) {
       row.className += " me";
     }
     const rankContent = i < 3
-      ? `<span class="medal">${medals[i]}</span>`
+      ? `<span class="medal">${i + 1}</span>`
       : `<span class="rank">${i + 1}</span>`;
     row.innerHTML =
       rankContent +
-      `<span class="who"><span style="margin-right:5px">${e.char || "💍"}</span></span>` +
-      `<span class="pts">${e.score}<small>${e.rings || 0}💍</small></span>`;
+      `<span class="who"></span>` +
+      `<span class="pts">${e.score}<small>${e.rings || 0} 💍</small></span>`;
     row.querySelector(".who").append(document.createTextNode(e.name));
     list.appendChild(row);
   });

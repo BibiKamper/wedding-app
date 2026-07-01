@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail" data-bg-color="#EFCBA6">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#EFCBA6"/>
+    <circle cx="600" cy="400" r="200" fill="#F3D6B4"/>
+    <path d="M400 300 Q600 180 800 300 L800 340 Q600 250 400 340 Z" fill="#6E4B2E"/>
+    <circle cx="510" cy="400" r="60" fill="none" stroke="#3A3A3A" stroke-width="14"/>
+    <circle cx="690" cy="400" r="60" fill="none" stroke="#3A3A3A" stroke-width="14"/>
+    <rect x="566" y="392" width="68" height="14" rx="6" fill="#3A3A3A"/>
+  </svg>
+</template>
+<div style="position:relative;width:140px;height:180px;font-family:sans-serif">
+
+  <!-- left arm (sleeve) -->
+  <div style="position:absolute;left:24px;top:80px;width:13px;height:48px;background:#7FA6BC;border-radius:7px;transform:rotate(11deg);transform-origin:top center;"></div>
+  <!-- right arm (sleeve) -->
+  <div style="position:absolute;left:103px;top:80px;width:13px;height:48px;background:#7FA6BC;border-radius:7px;transform:rotate(-11deg);transform-origin:top center;"></div>
+
+  <!-- legs (trousers) -->
+  <div style="position:absolute;left:55px;top:140px;width:13px;height:32px;background:#5E7F94;border-radius:5px;"></div>
+  <div style="position:absolute;left:72px;top:140px;width:13px;height:32px;background:#5E7F94;border-radius:5px;"></div>
+  <!-- shoes -->
+  <div style="position:absolute;left:51px;top:168px;width:18px;height:10px;background:#3A3A3A;border-radius:7px;"></div>
+  <div style="position:absolute;left:71px;top:168px;width:18px;height:10px;background:#3A3A3A;border-radius:7px;"></div>
+
+  <!-- suit jacket -->
+  <div style="position:absolute;left:39px;top:75px;width:62px;height:66px;background:#7FA6BC;border-radius:16px 16px 10px 10px;box-shadow:0 6px 16px rgba(80,100,120,.16);"></div>
+  <!-- white shirt collar (V) -->
+  <div style="position:absolute;left:57px;top:75px;width:26px;height:26px;background:#FFFFFF;clip-path:polygon(50% 100%,0 0,100% 0);"></div>
+  <!-- lapels -->
+  <div style="position:absolute;left:51px;top:75px;width:16px;height:30px;background:#6B92A8;clip-path:polygon(100% 0,0 0,100% 62%);"></div>
+  <div style="position:absolute;left:73px;top:75px;width:16px;height:30px;background:#6B92A8;clip-path:polygon(0 0,100% 0,0 62%);"></div>
+  <!-- tie -->
+  <div style="position:absolute;left:66px;top:78px;width:8px;height:8px;background:#3F5B6B;clip-path:polygon(50% 0,100% 100%,0 100%);"></div>
+  <div style="position:absolute;left:66px;top:85px;width:8px;height:26px;background:#3F5B6B;border-radius:0 0 3px 3px;clip-path:polygon(20% 0,80% 0,100% 100%,0 100%);"></div>
+
+  <!-- head -->
+  <div style="position:absolute;left:34px;top:8px;width:72px;height:72px;background:#EFCBA6;border-radius:50%;"></div>
+
+  <!-- hair: even short cut, higher hairline -->
+  <div style="position:absolute;left:31px;top:2px;width:78px;height:22px;background:#6E4B2E;border-radius:26px 26px 9px 9px;"></div>
+  <!-- fringe -->
+  <div style="position:absolute;left:35px;top:3px;width:70px;height:17px;background:#6E4B2E;border-radius:14px 14px 16px 16px;"></div>
+  <!-- sideburns -->
+  <div style="position:absolute;left:33px;top:20px;width:7px;height:11px;background:#6E4B2E;border-radius:3px;"></div>
+  <div style="position:absolute;left:100px;top:20px;width:7px;height:11px;background:#6E4B2E;border-radius:3px;"></div>
+
+  <!-- glasses (soft rectangular) -->
+  <div style="position:absolute;left:39px;top:35px;width:25px;height:18px;border:3px solid #3A3A3A;border-radius:8px;background:rgba(255,255,255,.18);"></div>
+  <div style="position:absolute;left:76px;top:35px;width:25px;height:18px;border:3px solid #3A3A3A;border-radius:8px;background:rgba(255,255,255,.18);"></div>
+  <div style="position:absolute;left:62px;top:39px;width:16px;height:4px;background:#3A3A3A;border-radius:2px;"></div>
+
+  <!-- eyes -->
+  <div style="position:absolute;left:48px;top:41px;width:6px;height:6px;background:#3A2E2A;border-radius:50%;"></div>
+  <div style="position:absolute;left:86px;top:41px;width:6px;height:6px;background:#3A2E2A;border-radius:50%;"></div>
+
+  <!-- moustache -->
+  <div style="position:absolute;left:57px;top:55px;width:13px;height:7px;background:#6E4B2E;border-radius:6px 6px 2px 6px;transform:rotate(7deg);"></div>
+  <div style="position:absolute;left:71px;top:55px;width:13px;height:7px;background:#6E4B2E;border-radius:6px 6px 6px 2px;transform:rotate(-7deg);"></div>
+  <!-- mouth -->
+  <div style="position:absolute;left:62px;top:62px;width:16px;height:7px;background:#B5564E;border-radius:3px 3px 9px 9px;"></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:140,&quot;height&quot;:190}}"></script>
+</body>
+</html>
