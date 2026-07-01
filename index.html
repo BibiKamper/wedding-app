@@ -142,10 +142,24 @@
   .scroll { max-height: 46vh; overflow-y: auto; overflow-x: hidden; width: 100%; display: flex; flex-direction: column; align-items: center; }
   .top3-banner { background: rgba(255,253,248,0.5); border: 1px solid rgba(201,162,75,0.45); border-radius: 14px; padding: 11px 16px; font-size: 12.5px; color: #5E5060; max-width: min(380px, 90vw); line-height: 1.4; margin-top: 2px; }
 
-  /* QR */
-  #qrbox { background: var(--cream-2); padding: 18px; border: 1.5px solid #E2D4B4; border-radius: 24px; line-height: 0; margin: 4px 0; box-shadow: 0 14px 30px rgba(150,120,60,0.16); }
-  #qrbox img { display: block; width: min(212px, 60vw); height: auto; image-rendering: pixelated; }
-  .qr-note { font-size: 13px; color: var(--muted); max-width: 32ch; line-height: 1.5; font-style: italic; }
+  /* QR / invite */
+  #qrScreen { background: #FBF5EA; }
+  #qrScreen h1 { font-size: clamp(28px, 9vw, 36px); }
+  #qrScreen .rule { margin: 16px 0 14px; }
+  #qrScreen .subtitle { font-style: italic; font-size: 14px; color: #8C8377; max-width: 230px; line-height: 1.5; margin: 0; font-family: "Karla", sans-serif; }
+  .qr-card { width: min(212px, 62vw); height: min(212px, 62vw); background: #FFFDF8; border: 1.5px solid #E2D4B4; border-radius: 24px; box-shadow: 0 14px 30px rgba(150,120,60,0.16); padding: 18px; margin: 26px 0 0; line-height: 0; }
+  .qr-card svg { width: 100%; height: 100%; display: block; }
+  .qr-url { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; background: none; border: none; font-family: "Karla", sans-serif; margin-top: 20px; padding: 4px; }
+  .qr-url:hover { opacity: 0.72; }
+  .qr-url .u { font-size: 13px; color: #C9A24B; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1.5px; word-break: break-all; }
+  .copy-ico { position: relative; width: 15px; height: 15px; flex: none; }
+  .copy-ico i:nth-child(1) { position: absolute; left: 3px; top: 0; width: 10px; height: 12px; border: 1.5px solid #C9A24B; border-radius: 3px; }
+  .copy-ico i:nth-child(2) { position: absolute; left: 0; top: 3px; width: 10px; height: 12px; border: 1.5px solid #C9A24B; border-radius: 3px; background: #FBF5EA; }
+  .check-ico { position: relative; width: 15px; height: 12px; flex: none; display: none; }
+  .check-ico i:nth-child(1) { position: absolute; left: 0; top: 6px; width: 6px; height: 2.5px; background: #C9A24B; border-radius: 1px; transform: rotate(45deg); transform-origin: left; }
+  .check-ico i:nth-child(2) { position: absolute; left: 4px; top: 9px; width: 11px; height: 2.5px; background: #C9A24B; border-radius: 1px; transform: rotate(-50deg); transform-origin: left; }
+  .qr-url.copied .copy-ico { display: none; }
+  .qr-url.copied .check-ico { display: block; }
 
   .tiny-link { background: none; border: none; color: var(--gold-deep); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font-family: inherit; padding: 4px; }
   .tiny-link:hover { color: var(--gold); }
@@ -186,9 +200,13 @@
   #startScreen .board-cta { margin-top: 22px; }
   #startScreen .invite-link { margin-top: 22px; }
 
-  .corner { position: absolute; width: 34px; height: 34px; top: calc(24px + env(safe-area-inset-top)); }
+  .corner { position: absolute; width: 34px; height: 34px; }
+  .corner-tl, .corner-tr { top: calc(24px + env(safe-area-inset-top)); }
+  .corner-bl, .corner-br { bottom: calc(24px + env(safe-area-inset-bottom)); }
   .corner-tl { left: 22px; border-left: 1.5px solid #DBCBA6; border-top: 1.5px solid #DBCBA6; border-radius: 5px 0 0 0; }
   .corner-tr { right: 22px; border-right: 1.5px solid #DBCBA6; border-top: 1.5px solid #DBCBA6; border-radius: 0 5px 0 0; }
+  .corner-bl { left: 22px; border-left: 1.5px solid #DBCBA6; border-bottom: 1.5px solid #DBCBA6; border-radius: 0 0 0 5px; }
+  .corner-br { right: 22px; border-right: 1.5px solid #DBCBA6; border-bottom: 1.5px solid #DBCBA6; border-radius: 0 0 5px 0; }
 
   .ring-motif { position: relative; width: 54px; height: 30px; margin: 22px 0 2px; }
   .ring-motif span { position: absolute; top: 2px; width: 26px; height: 26px; border-radius: 50%; }
@@ -371,14 +389,23 @@
   </div>
 </div>
 
-<!-- QR -->
+<!-- QR / INVITE -->
 <div class="screen" id="qrScreen" hidden>
+  <span class="corner corner-tl" aria-hidden="true"></span>
+  <span class="corner corner-tr" aria-hidden="true"></span>
+  <span class="corner corner-bl" aria-hidden="true"></span>
+  <span class="corner corner-br" aria-hidden="true"></span>
   <p class="eyebrow">Gäste einladen</p>
-  <h1 style="font-size:clamp(28px,9vw,44px)">Scannen & spielen</h1>
-  <div id="qrbox"><img id="qrImg" alt="QR-Code mit Link zum Spiel" /></div>
-  <p class="qr-note" id="qrLink" style="font-size:15px; color:var(--gold); word-break:break-all;"></p>
+  <h1>Scannen <span class="amp">&amp;</span> spielen</h1>
+  <div class="rule"></div>
+  <p class="subtitle">Zeig den Code deinen Gästen — scannen und sofort mitspielen</p>
+  <div class="qr-card" id="qrbox"></div>
+  <button class="qr-url" id="copyLinkBtn" aria-label="Link kopieren">
+    <span class="copy-ico" aria-hidden="true"><i></i><i></i></span>
+    <span class="check-ico" aria-hidden="true"><i></i><i></i></span>
+    <span class="u" id="qrLink"></span>
+  </button>
   <div class="btn-row">
-    <button class="btn" id="copyLinkBtn">Link kopieren</button>
     <button class="btn ghost" id="qrHomeBtn">Startseite</button>
   </div>
 </div>
@@ -1163,27 +1190,38 @@ document.getElementById("saveBtn").onclick = async (ev) => {
   await renderBoard(entry);
 };
 
-/* QR */
+/* QR / invite */
 function genQR(url) {
   try {
     const qr = qrcode(0, "M");
     qr.addData(url);
     qr.make();
-    document.getElementById("qrImg").src = qr.createDataURL(6, 8);
+    const box = document.getElementById("qrbox");
+    box.innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+    const svg = box.querySelector("svg");
+    if (svg) {
+      svg.removeAttribute("width"); svg.removeAttribute("height");
+      // recolor modules to warm dark brown, keep any white background transparent
+      svg.querySelectorAll("path, rect").forEach(p => {
+        const f = (p.getAttribute("fill") || "").toLowerCase();
+        if (f !== "#ffffff" && f !== "white") p.setAttribute("fill", "#2B2722");
+      });
+    }
   } catch (e) { console.error(e); }
 }
 const GAME_URL = "https://verena-und-phillip.netlify.app/";
+const SHORT_URL = GAME_URL.replace(/^https?:\/\//, "").replace(/\/$/, "");
 document.getElementById("qrBtn").onclick = () => {
-  document.getElementById("qrLink").textContent = GAME_URL;
+  document.getElementById("qrLink").textContent = SHORT_URL;
   show("qrScreen");
   genQR(GAME_URL);
 };
 document.getElementById("copyLinkBtn").onclick = () => {
-  navigator.clipboard.writeText(GAME_URL).then(() => {
-    const btn = document.getElementById("copyLinkBtn");
-    btn.textContent = "Kopiert! ✓";
-    setTimeout(() => btn.textContent = "Link kopieren", 2000);
-  });
+  const el = document.getElementById("copyLinkBtn");
+  try { navigator.clipboard && navigator.clipboard.writeText(GAME_URL); } catch (e) {}
+  el.classList.add("copied");
+  clearTimeout(el._copyT);
+  el._copyT = setTimeout(() => el.classList.remove("copied"), 1800);
 };
 
 /* boot */
