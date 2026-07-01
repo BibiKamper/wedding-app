@@ -168,6 +168,8 @@
     transition: border-color .14s ease, box-shadow .14s ease;
   }
   .picker-card.selected .char-frame { border: 2.5px solid var(--gold); box-shadow: 0 0 0 4px rgba(201,162,75,0.16), 0 10px 22px rgba(150,120,60,0.14); }
+  .char-frame { position: relative; }
+  .char-frame svg { position: absolute; left: 50%; top: 16px; transform: translateX(-50%); width: 98px; height: auto; display: block; }
   .char-canvas { display: block; }
   .char-name { font-family: "DM Serif Display", serif; font-size: 21px; font-weight: 400; color: var(--ink); margin-top: 10px; }
   .char-role { font-style: italic; font-size: 12.5px; color: var(--muted-2); }
@@ -276,12 +278,12 @@
   <p class="lead" style="margin-bottom:4px">Wähle deinen Charakter</p>
   <div class="picker-row">
     <button class="picker-card" id="pickBride" aria-label="Braut wählen">
-      <span class="char-frame"><canvas class="char-canvas" id="brideCanvas" width="100" height="120"></canvas></span>
+      <span class="char-frame" id="brideFrame"></span>
       <span class="char-name" id="brideLabel">Verena</span>
       <span class="char-role">Braut</span>
     </button>
     <button class="picker-card" id="pickGroom" aria-label="Bräutigam wählen">
-      <span class="char-frame"><canvas class="char-canvas" id="groomCanvas" width="100" height="120"></canvas></span>
+      <span class="char-frame" id="groomFrame"></span>
       <span class="char-name" id="groomLabel">Sam</span>
       <span class="char-role">Bräutigam</span>
     </button>
@@ -1138,8 +1140,13 @@ document.getElementById("copyLinkBtn").onclick = () => {
 
 /* boot */
 initAmbient();
-drawGroomPortrait(document.getElementById("groomCanvas"));
-drawBridePortrait(document.getElementById("brideCanvas"));
+// clone the SVG figures into the character picker frames
+(function fillPortraits() {
+  const b = figBride.cloneNode(true); b.removeAttribute("id"); b.style.display = "block";
+  const g = figGroom.cloneNode(true); g.removeAttribute("id"); g.style.display = "block";
+  document.getElementById("brideFrame").appendChild(b);
+  document.getElementById("groomFrame").appendChild(g);
+})();
 requestAnimationFrame(menuLoop);
 </script>
 </body>
